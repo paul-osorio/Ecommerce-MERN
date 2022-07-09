@@ -75,9 +75,16 @@ router.get("/getUser/:id", async (req, res) => {
   const _id = req.params.id;
   try {
     const user = await UserModel.findById(_id);
-    res.json(user);
+    if (!user) {
+      return res.json({
+        message: "User not found",
+      });
+    }
+    return res.json(user);
   } catch (error) {
-    res.status(500).send(error);
+    return res.status(400).json({
+      message: error.message,
+    });
   }
 });
 
