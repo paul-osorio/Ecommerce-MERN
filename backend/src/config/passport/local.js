@@ -8,14 +8,14 @@ const local = new LocalStrategy({ usernameField: "email" }, function (
   password,
   done
 ) {
-  User.findOne({ email: "osoriojohnpaulc@gmail.com" }, async (err, user) => {
+  User.findOne({ email: email }, async (err, user) => {
     if (err) {
       return done(err);
     }
     if (!user) {
-      return done(null, false, { message: "Incorrect email" });
+      return done(null, false, { message: "User not found" });
     }
-    const validPassword = await bcrypt.compare("pass123", user.password);
+    const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) {
       return done(null, false, { message: "Incorrect password" });
     }

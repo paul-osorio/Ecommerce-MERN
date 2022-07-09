@@ -4,8 +4,9 @@ const UserModel = require("../models/user");
 const bcrypt = require("bcrypt");
 const UserService = require("../services/user");
 const passport = require("passport");
-const saltRound = 10;
 const isAuthenticated = require("../middleware/authentication");
+
+const saltRound = 10;
 
 //create a new user
 router.post("/local/registerUser", async (req, res) => {
@@ -25,6 +26,11 @@ router.post("/local/registerUser", async (req, res) => {
         nameLast: body.nameLast,
         nameMiddle: body.nameMiddle,
         email: body.email,
+        gender: body.gender,
+        addresses: body.addresses,
+        dateOfBirth: body.dateOfBirth,
+        profilePicture: body.profilePicture,
+        phoneNumber: body.phoneNumber,
         password: hashedPassword,
       });
       return res.status(201).json({
@@ -61,33 +67,8 @@ router.post("/local/loginUser", (req, res, next) => {
 });
 
 router.get("/session", isAuthenticated, (req, res) => {
-  res.status(200).json({
-    email: req.user.email,
-  });
+  res.status(200).json(req.user);
 });
-
-// router.post("/local/loginUser", async (req, res) => {
-//   const { email, password } = req.body;
-//   try {
-//     const user = await UserModel.findOne({ email });
-//     if (user) {
-//       const compareHashedPass = await bcrypt.compare(password, user.password);
-//       if (compareHashedPass) {
-//         res.json(user);
-//       } else {
-//         res.status(400).json({
-//           message: "Invalid password",
-//         });
-//       }
-//     } else {
-//       res.status(400).json({
-//         message: "User does not exist",
-//       });
-//     }
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
 
 //get user by id
 router.get("/getUser/:id", async (req, res) => {

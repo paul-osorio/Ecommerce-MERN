@@ -5,7 +5,13 @@ const addLocalUser = (User) => (body) => {
     nameMiddle: body.nameMiddle,
     email: body.email,
     password: body.password,
+    dateOfBirth: body.dateOfBirth,
+    phoneNumber: body.phoneNumber,
+    addresses: body.addresses,
+    gender: body.gender,
     source: "local",
+    role: "user",
+    profilePicture: `https://avatar.oxro.io/avatar.svg?fontSize=200&name=${body.nameFirst} ${body.nameLast}`,
   });
 };
 

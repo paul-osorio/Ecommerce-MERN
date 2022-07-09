@@ -1,27 +1,13 @@
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const session = require("express-session");
+const connectDB = require("./config/mongodb.config");
+
 require("./config/passport/local");
 
-const dbURI = process.env.MONGODB_URI || "mongodb://localhost:27017/ecommerce";
-
-mongoose.connect(dbURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-const db = mongoose.connection;
-
-db.on("connected", () => {
-  console.log(`Mongoose is connected to ${dbURI}`);
-});
-
-db.on("error", (err) => {
-  console.log(`Mongoose connection error: ${err}`);
-});
+connectDB();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -38,6 +24,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Routes
 const userRouter = require("./routes/userRoute");
 app.use("/api/users", userRouter);
 
