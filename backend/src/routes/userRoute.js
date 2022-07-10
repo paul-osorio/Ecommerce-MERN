@@ -51,7 +51,7 @@ router.post("/local/loginUser", (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      return res.status(401).json({
+      return res.json({
         message: info.message,
       });
     }
@@ -66,8 +66,37 @@ router.post("/local/loginUser", (req, res, next) => {
   })(req, res, next);
 });
 
-router.get("/session", isAuthenticated, (req, res) => {
-  res.status(200).json(req.user);
+router.get("/session", (req, res) => {
+  const cookie = req.isAuthenticated();
+
+  res.json({
+    isAuthenticated: cookie,
+  });
+});
+router.get("/isAuth", async (req, res) => {
+  if (req.user) {
+    return res.json({
+      isAuthenticated: true,
+      user: req.user,
+    });
+  } else {
+    return res.json({
+      isAuthenticated: false,
+    });
+  }
+});
+
+router.post("/logout", (req, res) => {
+  req.logOut(function (err) {
+    if (err) {
+      return res.status(500).json({
+        message: err.message,
+      });
+    }
+    return res.status(200).json({
+      message: "User logged out",
+    });
+  });
 });
 
 //get user by id

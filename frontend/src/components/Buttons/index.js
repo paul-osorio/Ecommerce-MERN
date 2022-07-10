@@ -1,3 +1,4 @@
 import ProviderButton from "./ProviderButton";
+import SignInButton from "./SignInButton";
 
-export { ProviderButton };
+export { ProviderButton, SignInButton };

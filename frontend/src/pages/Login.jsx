@@ -1,6 +1,7 @@
 import { EntryContainer, EntrySideImage } from "../components/Containers";
 import ShoppinCart3D from "../assets/images/shoppingCart3D.jpg";
 import LoginForm from "../components/Forms/LoginForm";
+import { logoutUser } from "../app/lib/user";
 
 const Login = () => {
   return (

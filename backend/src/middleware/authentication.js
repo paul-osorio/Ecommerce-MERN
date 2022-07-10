@@ -1,8 +1,12 @@
 function checkAuthentication(req, res, next) {
   if (req.isAuthenticated()) {
-    return next();
+    res.json({
+      isAuthenticated: true,
+      message: "User is authenticated",
+    });
   } else {
-    res.status(401).json({
+    res.json({
+      isAuthenticated: false,
       message: "You are not logged in",
     });
   }
