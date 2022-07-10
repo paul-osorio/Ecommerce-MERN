@@ -1,4 +1,7 @@
-import { Link } from "react-router-dom";
+import { ProviderButton } from "../Buttons";
+import { LinkToRegister } from "../Links";
+import Divider from "../Misc";
+import { EntryTextField } from "../TextField";
 
 const LoginForm = () => {
   return (
@@ -10,7 +13,7 @@ const LoginForm = () => {
         <div>
           <EntryTextField placeholder="Email address" />
           <EntryTextField placeholder="Password" />
-          <button className="w-full bg-orange-300 text-gray-800 py-2 mt-2 rounded-lg font-bold mb-5">
+          <button className="w-full bg-orange-300 text-gray-800 py-3 mt-2 rounded-lg font-bold mb-5">
             Sign in
           </button>
           <Divider Title="or Sign in with" />
@@ -28,54 +31,9 @@ const LoginForm = () => {
               Name="Twitter"
             />
           </div>
-          <div className="flex justify-center items-center space-x-1 mt-5">
-            <span className="text-sm text-gray-600">
-              Don't have an account?
-            </span>
-            <Link
-              to="/register"
-              className="text-gray-800 hover:text-gray-900 font-medium text-sm"
-            >
-              Sign up
-            </Link>
-          </div>
+          <LinkToRegister />
         </div>
       </div>
-    </div>
-  );
-};
-const ProviderButton = ({ onClick, Name, Image }) => {
-  return (
-    <button
-      className="border px-3 rounded py-2 w-full flex items-center justify-center space-x-1"
-      onClick={onClick}
-    >
-      <img src={Image} className="h-4 w-4" alt="" />
-      <span className="text-sm font-medium">{Name}</span>
-    </button>
-  );
-};
-
-const Divider = ({ Title }) => {
-  return (
-    <div className="flex items-center justify-center">
-      <div className="w-full bg-gray-300 h-[1px]" />
-      <span className="block w-full text-center text-sm text-gray-600">
-        {Title}
-      </span>
-      <div className="w-full bg-gray-300 h-[1px]" />
-    </div>
-  );
-};
-
-const EntryTextField = ({ placeholder }) => {
-  return (
-    <div className="mb-2">
-      <input
-        type="text"
-        placeholder={placeholder}
-        className="border w-full text-sm py-3 px-4 rounded-lg outline-none"
-      />
     </div>
   );
 };
