@@ -6,7 +6,7 @@ import LoginForm from "../components/Forms/LoginForm";
 const Login = () => {
   return (
     <EntryContainer title="Starbuy">
-      <div className="col-span-1">
+      <div className="laptop:col-span-1 mobile:col-span-full">
         <LoginForm />
       </div>
       <EntrySideImage image={ShoppinCart3D} />
