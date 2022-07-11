@@ -66,14 +66,7 @@ router.post("/local/loginUser", (req, res, next) => {
   })(req, res, next);
 });
 
-router.get("/session", (req, res) => {
-  const cookie = req.isAuthenticated();
-
-  res.json({
-    isAuthenticated: cookie,
-  });
-});
-router.get("/isAuth", async (req, res) => {
+router.get("/isAuth", isAuthenticated, async (req, res) => {
   if (req.user) {
     return res.json({
       isAuthenticated: true,
@@ -100,7 +93,7 @@ router.post("/logout", (req, res) => {
 });
 
 //get user by id
-router.get("/getUser/:id", async (req, res) => {
+router.get("/getUser/:id", isAuthenticated, async (req, res) => {
   const _id = req.params.id;
   try {
     const user = await UserModel.findById(_id);
@@ -118,13 +111,34 @@ router.get("/getUser/:id", async (req, res) => {
 });
 
 //update user by id
-router.put("/updateUser/:id", async (req, res) => {
+router.put("/updateUser/:id", isAuthenticated, async (req, res) => {
   const _id = req.params.id;
   try {
     const user = await UserModel.findByIdAndUpdate(_id, req.body);
     res.json(user);
   } catch (error) {
     res.status(500).json(error);
+  }
+});
+
+router.post("/checkEmail", async (req, res) => {
+  const email = req.body.email;
+
+  try {
+    const user = await UserModel.findOne({ email: email });
+    if (!user) {
+      return res.json({
+        status: false,
+      });
+    } else {
+      return res.json({
+        status: true,
+      });
+    }
+  } catch (error) {
+    return res.status(400).json({
+      message: error.message,
+    });
   }
 });
 

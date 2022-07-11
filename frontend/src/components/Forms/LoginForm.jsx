@@ -1,23 +1,23 @@
-import { ProviderButton, SignInButton } from "../Buttons";
 import { LinkToRegister } from "../Links";
-import Divider from "../Misc";
+import Divider from "../Misc/Divider";
 import { EntryTextField } from "../TextField";
 import { Formik, Form } from "formik";
 import SignInValidation from "../../validations/SignInValidation";
 import useLoginUser from "../../hooks/useLoginUser";
+import SignInButton from "../Buttons/SignInButton";
+import ProviderButton from "../Buttons/ProviderButton";
 
 const LoginForm = () => {
-  const { onSubmit, error } = useLoginUser();
+  const { onSubmit, error, setError } = useLoginUser();
 
   return (
     <div className="flex justify-center items-center h-full px-4">
-      <div className="bg-white rounded-xl tablet:w-[375px] shadow mobile:w-full px-5 py-5">
+      <div className="bg-white rounded-xl tablet:w-[375px] shadow-lg mobile:w-full px-5 py-5">
         <h1 className="font-medium text-2xl tracking-tight mb-5 mt-3">
           Sign in to Starbuy
         </h1>
         <Formik
           initialValues={{ email: "", password: "" }}
-          validateOnChange={false}
           validateOnBlur={false}
           validationSchema={SignInValidation}
           onSubmit={onSubmit}
@@ -25,14 +25,20 @@ const LoginForm = () => {
           {(props) => (
             <Form>
               <EntryTextField
+                label="Email address"
                 name="email"
                 type="text"
+                onKeyDown={() => setError(null)}
+                customError={error?.type === "email" && error.message}
                 placeholder="Email address"
               />
               <EntryTextField
+                label="Password"
                 name="password"
                 type="password"
                 placeholder="Password"
+                onKeyDown={() => setError(null)}
+                customError={error?.type === "password" && error.message}
               />
               <SignInButton />
             </Form>

@@ -5,7 +5,7 @@ const LinkToRegister = () => {
       <span className="text-sm text-gray-600">Don't have an account?</span>
       <Link
         to="/register"
-        className="text-gray-800 hover:text-gray-900 font-medium text-sm"
+        className="text-gray-700 hover:text-gray-900 font-medium text-sm"
       >
         Sign up
       </Link>

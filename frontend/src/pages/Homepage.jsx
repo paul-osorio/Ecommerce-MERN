@@ -1,4 +1,4 @@
-import { logoutUser } from "../app/lib/user";
+import { logoutUser } from "../app/lib/auth";
 import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {

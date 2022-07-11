@@ -1,3 +1,3 @@
 import LinkToRegister from "./LinkToRegister";
-
-export { LinkToRegister };
+import LinkToLogin from "./LinkToLogin";
+export { LinkToRegister, LinkToLogin };

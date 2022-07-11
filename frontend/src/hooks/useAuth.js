@@ -8,7 +8,6 @@ export default function useAuth() {
     const fetchUserAuth = async () => {
       try {
         const response = await authData();
-        console.log(response);
         setAuth(response.data);
       } catch (error) {
         console.log(error);

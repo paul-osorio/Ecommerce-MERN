@@ -1,8 +1,10 @@
 import axios from "axios";
 
 const axiosClient = axios.create();
+const axiosClientNetwork = axios.create();
 
-axiosClient.defaults.baseURL = "http://localhost:5000/api";
+axiosClient.defaults.baseURL = "http://192.168.100.4:5000/api";
+// axiosClient.defaults.baseURL = "http://localhost:5000/api";
 
 axiosClient.defaults.headers = {
   "Content-Type": "application/json",

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../app/lib/user";
+import { loginUser } from "../app/lib/auth";
 
 const useLoginUser = () => {
   const [error, setError] = useState(null);
@@ -10,9 +10,9 @@ const useLoginUser = () => {
       const response = await loginUser(values);
       const message = response.data.message;
       if (message === "User not found") {
-        setError(message);
+        setError({ message, type: "email" });
       } else if (message === "Incorrect password") {
-        setError(message);
+        setError({ message, type: "password" });
       } else {
         navigate("/");
       }
@@ -21,7 +21,7 @@ const useLoginUser = () => {
     }
   };
 
-  return { onSubmit, error };
+  return { onSubmit, error, setError };
 };
 
 export default useLoginUser;

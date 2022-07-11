@@ -1,8 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
+import "./assets/css/app.css";
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
       </Route>
       <Route element={<PublicRoute />}>
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Route>
     </Routes>
   );
