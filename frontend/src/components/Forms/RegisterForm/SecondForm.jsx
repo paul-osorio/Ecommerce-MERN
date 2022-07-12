@@ -5,7 +5,7 @@ import AddressDropdown from "../../Dropdown/AddressDropdown";
 import dates from "../../../json/dates.json";
 import TextArea from "../../TextField/TextArea";
 import SignUpPrevButton from "../../Buttons/SignupPrevButton";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { RegisterContext } from "../../../context/RegisterContext";
 import { useCombineAddress } from "../../../hooks/useCombineAddress";
 import { useRef } from "react";
@@ -67,7 +67,7 @@ const SecondForm = ({ setStep }) => {
           gender: values.gender,
           phoneNumber: values.phoneNumber,
         };
-        const encryptedemail = encrypt(personalInfo.encryptedemail);
+        const encryptedemail = encrypt(personalInfo.email);
 
         navigate(`/success_register/${encryptedemail}`);
         await registerUser(data);

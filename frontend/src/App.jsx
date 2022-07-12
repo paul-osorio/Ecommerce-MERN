@@ -10,6 +10,8 @@ import SuccessRegister from "./pages/RegisterVerification/SuccessRegister";
 function App() {
   return (
     <Routes>
+      <Route path="*" element={<h1>404 not found</h1>} />
+
       <Route element={<PrivateRoute />}>
         <Route path="/" element={<Homepage />} />
       </Route>
