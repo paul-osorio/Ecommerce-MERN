@@ -8,7 +8,7 @@ import { useState } from "react";
 import "./style.css";
 
 const RegisterForm = () => {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
 
   return (
     <div className="flex justify-center items-center h-full px-4">
@@ -16,7 +16,7 @@ const RegisterForm = () => {
         <h1 className="font-bold text-3xl tracking-tight mb-5 mt-3">Sign Up</h1>
         <div className="mb-3">
           {step === 1 && <FirstForm setStep={setStep} />}
-          {step === 2 && <SecondForm />}
+          {step === 2 && <SecondForm setStep={setStep} />}
         </div>
         <Divider Title="or Sign up with" />
 

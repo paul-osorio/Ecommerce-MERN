@@ -24,7 +24,6 @@ router.post("/local/registerUser", async (req, res) => {
       await UserService.addLocalUser({
         nameFirst: body.nameFirst,
         nameLast: body.nameLast,
-        nameMiddle: body.nameMiddle,
         email: body.email,
         gender: body.gender,
         addresses: body.addresses,

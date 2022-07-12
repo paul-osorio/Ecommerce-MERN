@@ -34,3 +34,15 @@ export const FirstFormSchema = Yup.object().shape({
     .oneOf([Yup.ref("password"), null], "Passwords must match")
     .required("Confirm Password is required"),
 });
+
+export const SecondFormSchema = Yup.object().shape({
+  zipCode: Yup.number("Please enter a valid zip code")
+    .min(4, "Zip code must be 4 digits")
+    .required("Zip code is required"),
+  street: Yup.string().trim().required("Street is required"),
+  month: Yup.string().trim().required("Month is required"),
+  day: Yup.string().trim().required("Day is required"),
+  year: Yup.string().trim().required("Year is required"),
+  gender: Yup.string().trim().required("Gender is required"),
+  phoneNumber: Yup.string().trim().required("Phone number is required"),
+});

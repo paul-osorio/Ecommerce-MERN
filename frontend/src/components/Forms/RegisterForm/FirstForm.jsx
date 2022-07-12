@@ -1,22 +1,24 @@
 import { Formik, Form } from "formik";
 import { FirstFormSchema } from "../../../validations/RegisterValidation";
-import SignUpNextButton from "../../Buttons/SignupNextButton";
+import SignUpNextButton from "../../Buttons/SignupButton";
 import { EntryTextField } from "../../TextField";
-import { useDispatch } from "react-redux";
-import { setPersonalInfo } from "../../../app/reducers/signupReducer";
+import { useContext } from "react";
+import { RegisterContext } from "../../../context/RegisterContext";
 
 const FirstForm = ({ setStep }) => {
-  const dispatch = useDispatch();
+  const regContext = useContext(RegisterContext);
+  const personalInfo = regContext?.personalInfo;
   const initialValues = {
-    nameFirst: "",
-    nameLast: "",
-    email: "",
-    password: "",
-    passwordConfirm: "",
+    nameFirst: personalInfo?.nameFirst || "",
+    nameLast: personalInfo?.nameLast || "",
+    email: personalInfo?.email || "",
+    password: personalInfo?.password || "",
+    passwordConfirm: personalInfo?.passwordConfirm || "",
   };
 
   const onSubmit = (values) => {
-    dispatch(setPersonalInfo(values));
+    regContext.setPersonalInfo(values);
+    console.log(personalInfo);
     setStep(2);
   };
   return (

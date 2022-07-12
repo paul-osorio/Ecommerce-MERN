@@ -6,19 +6,19 @@ const AddressSchema = new mongoose.Schema({
     required: true,
   },
   city: {
-    type: String,
+    type: Object,
     required: true,
   },
   region: {
-    type: String,
+    type: Object,
     required: true,
   },
   barangay: {
-    type: String,
+    type: Object,
     required: true,
   },
   province: {
-    type: String,
+    type: Object,
     required: true,
   },
   zip: {

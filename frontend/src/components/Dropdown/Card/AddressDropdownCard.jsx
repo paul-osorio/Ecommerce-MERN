@@ -7,10 +7,13 @@ import {
   getCityByProvince,
   getBarangayByCity,
 } from "../../../hooks/useAddresses";
-import { AddressContext } from "../../../context/AddresContext";
+import { RegisterContext } from "../../../context/RegisterContext";
+import { camelCase } from "../../../hooks/useCombineAddress";
+import { SelectAddressButton } from "../../Buttons/SelectAddressButton";
 
 const AddressDropdownCard = () => {
   const {
+    setError,
     region,
     setRegion,
     province,
@@ -20,7 +23,7 @@ const AddressDropdownCard = () => {
     barangay,
     setBarangay,
     setShowDropdown,
-  } = useContext(AddressContext);
+  } = useContext(RegisterContext);
   const [active, setActive] = useState(0);
   const [searchbrgy, setSearchbrgy] = useState("");
   const regionList = regions.RECORDS;
@@ -28,37 +31,39 @@ const AddressDropdownCard = () => {
   const cityList = getCityByProvince(province?.provCode);
   const barangayList = getBarangayByCity(city?.citymunCode);
 
+  const addressbutton = [
+    {
+      Name: "Region",
+      activeVal: 0,
+      isActive: active === 0,
+      isDisabled: true,
+    },
+    {
+      Name: "Province",
+      activeVal: 1,
+      isActive: active === 1,
+      isDisabled: region,
+    },
+    {
+      Name: "City",
+      activeVal: 2,
+      isActive: active === 2,
+      isDisabled: province,
+    },
+    {
+      Name: "Barangay",
+      activeVal: 3,
+      isActive: active === 3,
+      isDisabled: city,
+    },
+  ];
+
   return (
     <div className="absolute z-10 bg-white w-full border rounded-lg shadow-lg">
       <div className="flex border-b">
-        <AddressButton
-          Name="Region"
-          setActive={setActive}
-          activeVal={0}
-          isActive={active === 0}
-          isDisabled={true}
-        />
-        <AddressButton
-          Name="Province"
-          setActive={setActive}
-          activeVal={1}
-          isActive={active === 1}
-          isDisabled={region}
-        />
-        <AddressButton
-          Name="City"
-          setActive={setActive}
-          activeVal={2}
-          isActive={active === 2}
-          isDisabled={province}
-        />
-        <AddressButton
-          Name="Barangay"
-          setActive={setActive}
-          activeVal={3}
-          isActive={active === 3}
-          isDisabled={city}
-        />
+        {addressbutton.map((button, index) => (
+          <AddressButton key={index} {...button} setActive={setActive} />
+        ))}
       </div>
       <div className="h-60 overflow-auto changescrollbar">
         {active === 0 &&
@@ -87,7 +92,7 @@ const AddressDropdownCard = () => {
                   setCity(null);
                   setBarangay(null);
                 }}
-                name={val.provDesc}
+                name={camelCase(val.provDesc)}
               />
             );
           })}
@@ -101,7 +106,7 @@ const AddressDropdownCard = () => {
                   setCity(val);
                   setBarangay(null);
                 }}
-                name={val.citymunDesc}
+                name={camelCase(val.citymunDesc)}
               />
             );
           })}
@@ -112,7 +117,7 @@ const AddressDropdownCard = () => {
               onChange={(e) => setSearchbrgy(e.target.value)}
               value={searchbrgy}
               placeholder="Search barangay..."
-              className="text-sm px-2 py-1 w-full outline-none bg-gray-100"
+              className="text-sm px-2 py-2 w-full outline-none bg-gray-100"
             />
             {barangayList
               .filter((dat) =>
@@ -126,28 +131,15 @@ const AddressDropdownCard = () => {
                     onClick={() => {
                       setBarangay(val);
                       setShowDropdown(false);
+                      setError(null);
                     }}
-                    name={val.brgyDesc}
+                    name={camelCase(val.brgyDesc)}
                   />
                 );
               })}
           </div>
         )}
       </div>
-    </div>
-  );
-};
-const SelectAddressButton = ({ name, onClick, isSelected }) => {
-  return (
-    <div
-      role="button"
-      onClick={onClick}
-      className={
-        (isSelected ? "bg-indigo-600 text-white" : "hover:bg-gray-50") +
-        " py-3 border-b px-2  text-xs normal-case"
-      }
-    >
-      {name}
     </div>
   );
 };
