@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
 import "./assets/css/app.css";
+import SuccessRegister from "./pages/RegisterVerification/SuccessRegister";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route element={<PublicRoute />}>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/success_register/:email" element={<SuccessRegister />} />
       </Route>
     </Routes>
   );

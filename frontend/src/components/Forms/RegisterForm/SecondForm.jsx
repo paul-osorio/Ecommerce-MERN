@@ -11,6 +11,8 @@ import { useCombineAddress } from "../../../hooks/useCombineAddress";
 import { useRef } from "react";
 import { SecondFormSchema } from "../../../validations/RegisterValidation";
 import { registerUser } from "../../../app/lib/auth";
+import { useNavigate } from "react-router-dom";
+import { encrypt } from "../../../hooks/useCrypto";
 
 const SecondForm = ({ setStep }) => {
   const regContext = useContext(RegisterContext);
@@ -26,6 +28,7 @@ const SecondForm = ({ setStep }) => {
   } = regContext;
   const { address } = useCombineAddress(regContext);
   const formRef = useRef();
+  const navigate = useNavigate();
 
   const initValues = {
     psgc: address || "",
@@ -64,6 +67,9 @@ const SecondForm = ({ setStep }) => {
           gender: values.gender,
           phoneNumber: values.phoneNumber,
         };
+        const encryptedemail = encrypt(personalInfo.encryptedemail);
+
+        navigate(`/success_register/${encryptedemail}`);
         await registerUser(data);
       } else setError("Please select a valid address");
     } else setError("This field is required");
