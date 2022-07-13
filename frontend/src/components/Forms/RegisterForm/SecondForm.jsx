@@ -12,14 +12,19 @@ import { useRef } from "react";
 import { SecondFormSchema } from "../../../validations/RegisterValidation";
 import { registerUser } from "../../../app/lib/auth";
 import { useNavigate } from "react-router-dom";
-import { encrypt } from "../../../hooks/useCrypto";
+import { useState } from "react";
+import SelectDropdown from "../../Dropdown/SelectDropdown";
+import { numberOnly } from "../../../helper/numberOnly";
+import { encrypt } from "../../../helper/base64EncodeDecode";
 
 const SecondForm = ({ setStep }) => {
+  const navigate = useNavigate();
+
   const regContext = useContext(RegisterContext);
+  const [loading, setLoading] = useState(false);
   const {
     details,
     setDetails,
-    setError,
     personalInfo,
     city,
     region,
@@ -28,7 +33,6 @@ const SecondForm = ({ setStep }) => {
   } = regContext;
   const { address } = useCombineAddress(regContext);
   const formRef = useRef();
-  const navigate = useNavigate();
 
   const initValues = {
     psgc: address || "",
@@ -40,46 +44,54 @@ const SecondForm = ({ setStep }) => {
     gender: details?.gender || "",
     phoneNumber: details?.phoneNumber || "",
   };
-  const onSubmit = async (values) => {
-    if (address) {
-      const arr = address.split(",");
-      if (arr.length === 4) {
-        const data = {
-          nameFirst: personalInfo?.nameFirst,
-          nameLast: personalInfo?.nameLast,
-          email: personalInfo?.email,
-          password: personalInfo?.password,
-          addresses: [
-            {
-              street: values.street,
-              city,
-              region,
-              barangay,
-              province,
-              zip: values.zipCode,
-            },
-          ],
-          dateOfBirth: {
-            month: values.month,
-            day: values.day,
-            year: values.year,
-          },
-          gender: values.gender,
-          phoneNumber: values.phoneNumber,
-        };
-        const encryptedemail = encrypt(personalInfo.email);
 
-        navigate(`/success_register/${encryptedemail}`);
-        await registerUser(data);
-      } else setError("Please select a valid address");
-    } else setError("This field is required");
+  const onSubmit = async (values) => {
+    setLoading(true);
+    try {
+      const data = {
+        nameFirst: personalInfo?.nameFirst,
+        nameLast: personalInfo?.nameLast,
+        email: personalInfo?.email,
+        password: personalInfo?.password,
+        addresses: [
+          {
+            street: values.street,
+            city,
+            region,
+            barangay,
+            province,
+            zip: values.zipCode,
+          },
+        ],
+        dateOfBirth: {
+          month: values.month,
+          day: values.day,
+          year: values.year,
+        },
+        gender: values.gender,
+        phoneNumber: values.phoneNumber,
+      };
+      const encryptedemail = encrypt(personalInfo.email);
+
+      navigate(`/success_register/${encodeURIComponent(encryptedemail)}`);
+      await registerUser(data);
+    } catch (err) {
+      console.log(err);
+    }
+    setLoading(false);
   };
 
   const getVal = () => {
     const values = formRef.current.values;
+    console.log(values);
     setDetails(values);
     setStep(1);
   };
+
+  const genderOptions = [
+    { value: "Male", label: "Male" },
+    { value: "Female", label: "Female" },
+  ];
 
   return (
     <Formik
@@ -89,14 +101,16 @@ const SecondForm = ({ setStep }) => {
       validationSchema={SecondFormSchema}
       onSubmit={onSubmit}
     >
-      {({ errors, touched, setFieldValue }) => (
+      {({ errors, touched }) => (
         <Form className="w-full">
-          <AddressDropdown name="psgc" type="text" value={address} />
+          <AddressDropdown name="psgc" type="text" />
           <EntryTextField
             label="Zip code"
             name="zipCode"
             type="text"
             placeholder="Zip code"
+            onKeyPress={numberOnly}
+            maxLength={10}
           />
           <div>
             <Field
@@ -116,66 +130,57 @@ const SecondForm = ({ setStep }) => {
             <label className="text-xs text-gray-500">Date of Birth</label>
             <div className="flex space-x-2">
               <Field
-                as="select"
+                component={SelectDropdown}
                 name="month"
-                className="outline-none border rounded-lg text-sm w-full px-2 py-3"
-              >
-                <option selected disabled className="text-gray-200">
-                  Month
-                </option>
-                {dates.months.map((month, index) => (
-                  <option key={index} value={month}>
-                    {month}
-                  </option>
-                ))}
-              </Field>
+                options={dates.months}
+                className="w-full"
+                placeholder="Month"
+              />
               <Field
-                as="select"
+                component={SelectDropdown}
                 name="day"
-                className="outline-none border rounded-lg text-sm w-full px-2"
-              >
-                <option selected disabled className="text-gray-200">
-                  Day
-                </option>
-                {dates.date.map((date, index) => (
-                  <option key={index} value={date}>
-                    {date}
-                  </option>
-                ))}
-              </Field>
+                options={dates.date}
+                className="w-full"
+                placeholder="Day"
+              />
               <Field
-                as="select"
+                component={SelectDropdown}
                 name="year"
-                className="outline-none border rounded-lg text-sm w-full px-2"
-              >
-                <option selected disabled className="text-gray-200">
-                  Year
-                </option>
-                {dates.year.map((year, index) => (
-                  <option key={index} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </Field>
+                options={dates.year}
+                className="w-full"
+                placeholder="Year"
+              />
             </div>
-            {errors.month && errors.day && errors.year && (
+            {(touched.month || touched.day || touched.year) &&
+            (errors.month || errors.day || errors.year) ? (
               <div className="text-red-500 text-xs">
                 <i className="far fa-exclamation-circle mx-1"></i>
                 Please select your date of birth
               </div>
+            ) : (
+              ""
             )}
           </div>
           <div className="flex space-x-2">
-            <EntryTextField name="gender" label="Gender" placeholder="Gender" />
+            <div className="w-full">
+              <Field
+                component={SelectDropdown}
+                name="gender"
+                options={genderOptions}
+                className="py-1"
+              />
+            </div>
             <EntryTextField
               name="phoneNumber"
               label="Mobile number"
               placeholder="Mobile number"
+              onKeyPress={numberOnly}
+              maxLength={11}
             />
           </div>
           <div className="flex space-x-2">
             <SignUpPrevButton onClick={getVal} />
-            <SignUpNextButton name="Submit" />
+            <SignUpNextButton name="Submit" isLoading={loading} />
           </div>
         </Form>
       )}

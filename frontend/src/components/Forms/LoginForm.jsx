@@ -8,11 +8,11 @@ import SignInButton from "../Buttons/SignInButton";
 import ProviderButton from "../Buttons/ProviderButton";
 
 const LoginForm = () => {
-  const { onSubmit, error, setError } = useLoginUser();
+  const { onSubmit, error, setError, loading } = useLoginUser();
 
   return (
     <div className="flex justify-center items-center h-full px-4">
-      <div className="bg-white rounded-xl tablet:w-[375px] shadow-lg mobile:w-full px-5 py-5">
+      <div className="bg-white mobile:border mobile:shadow-lg mobile:border-t-4 mobile:border-t-purple-500 laptop:shadow-none laptop:border-none rounded-xl tablet:w-[375px] mobile:w-full px-5 py-5">
         <h1 className="font-medium text-2xl tracking-tight mb-5 mt-3">
           Sign in to Starbuy
         </h1>
@@ -60,7 +60,7 @@ const LoginForm = () => {
             Name="Twitter"
           />
         </div>
-        <LinkToRegister />
+        <LinkToRegister isLoading={loading} />
       </div>
     </div>
   );

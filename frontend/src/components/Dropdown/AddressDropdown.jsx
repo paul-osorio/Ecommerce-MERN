@@ -7,11 +7,15 @@ import { useCombineAddress } from "../../hooks/useCombineAddress";
 import { useEffect } from "react";
 
 const AddressDropdown = ({ customError, ...props }) => {
-  const [field, meta, helpers] = useField(props);
+  const [field, meta, { setValue }] = useField(props);
 
   const { showDropdown, setShowDropdown, error } = useContext(RegisterContext);
   const registerContext = useContext(RegisterContext);
-  const { reg } = useCombineAddress(registerContext);
+  const { reg, address } = useCombineAddress(registerContext);
+
+  useEffect(() => {
+    setValue(address);
+  }, [address]);
 
   const ref = useRef();
   useOnClickOutside(ref, () => setShowDropdown(false));
@@ -23,6 +27,7 @@ const AddressDropdown = ({ customError, ...props }) => {
           {...field}
           {...props}
           onFocus={() => setShowDropdown(true)}
+          autoComplete="off"
           className={
             (showDropdown ? "ring-indigo-400 ring-inset ring-2 " : "") +
             " border mb-1 cursor-pointer  peer placeholder-transparent w-full text-sm py-3 transition px-4 rounded-lg outline-none"
@@ -53,10 +58,10 @@ const AddressDropdown = ({ customError, ...props }) => {
         >
           Region, Province, City, Barangay
         </label>
-        {error ? (
+        {meta.touched && meta.error ? (
           <div className="text-red-500 text-xs">
             <i className="far fa-exclamation-circle mx-1"></i>
-            {error}
+            {meta.error}
           </div>
         ) : null}
       </div>

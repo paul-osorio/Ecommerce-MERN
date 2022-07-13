@@ -4,6 +4,7 @@ import SignUpNextButton from "../../Buttons/SignupButton";
 import { EntryTextField } from "../../TextField";
 import { useContext } from "react";
 import { RegisterContext } from "../../../context/RegisterContext";
+import PasswordTextField from "../../TextField/PasswordTextField";
 
 const FirstForm = ({ setStep }) => {
   const regContext = useContext(RegisterContext);
@@ -50,17 +51,15 @@ const FirstForm = ({ setStep }) => {
             label="Email address"
             type="text"
           />
-          <EntryTextField
+          <PasswordTextField
             name="password"
             placeholder="Password"
             label="Password"
-            type="password"
           />
-          <EntryTextField
+          <PasswordTextField
             name="passwordConfirm"
             placeholder="Confirm Password"
             label="Confirm Password"
-            type="password"
           />
           <div className=" flex">
             <div className="w-full"></div>

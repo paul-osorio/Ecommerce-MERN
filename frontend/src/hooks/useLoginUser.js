@@ -4,8 +4,11 @@ import { loginUser } from "../app/lib/auth";
 
 const useLoginUser = () => {
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
   const onSubmit = async (values) => {
+    setLoading(true);
     try {
       const response = await loginUser(values);
       const message = response.data.message;
@@ -16,12 +19,13 @@ const useLoginUser = () => {
       } else {
         navigate("/");
       }
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
 
-  return { onSubmit, error, setError };
+  return { onSubmit, error, setError, loading };
 };
 
 export default useLoginUser;

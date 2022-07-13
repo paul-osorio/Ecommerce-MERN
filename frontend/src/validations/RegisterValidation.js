@@ -36,6 +36,21 @@ export const FirstFormSchema = Yup.object().shape({
 });
 
 export const SecondFormSchema = Yup.object().shape({
+  psgc: Yup.string()
+    .trim()
+    .required("This field is required")
+    .test("psgcError", "Please enter a valid address", (value) => {
+      //convert string separated by comma to array
+      if (value) {
+        const psgc = value.split(",");
+        //check if array has 4 elements
+        if (psgc.length === 4) {
+          //check if each element is a number
+          return true;
+        }
+        return false;
+      }
+    }),
   zipCode: Yup.number("Please enter a valid zip code")
     .min(4, "Zip code must be 4 digits")
     .required("Zip code is required"),
@@ -43,6 +58,9 @@ export const SecondFormSchema = Yup.object().shape({
   month: Yup.string().trim().required("Month is required"),
   day: Yup.string().trim().required("Day is required"),
   year: Yup.string().trim().required("Year is required"),
-  gender: Yup.string().trim().required("Gender is required"),
-  phoneNumber: Yup.string().trim().required("Phone number is required"),
+  gender: Yup.string().required("Gender is required"),
+  phoneNumber: Yup.string()
+    .trim()
+    .required("Phone number is required")
+    .min(11, "Invalid phone number"),
 });
