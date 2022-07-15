@@ -1,7 +1,7 @@
 import axiosClient from "../apiClient";
 
-export function getUserById(id) {
-  return axiosClient.get(`/user/${id}`);
+export function getUserDetails() {
+  return axiosClient.get(`/user`);
 }
 
 export function updateUserById(id, data) {

@@ -15,7 +15,7 @@ router.post("/register/local", userRegister);
 router.post("/login/local", userLogin);
 
 //check authentication session
-router.get("", isAuthenticated, userAuth);
+router.get("", userAuth);
 
 //logout user
 router.post("/logout", userLogout);

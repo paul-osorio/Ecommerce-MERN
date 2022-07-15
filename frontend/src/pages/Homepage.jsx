@@ -1,5 +1,6 @@
 import { logoutUser } from "../app/lib/auth";
 import { useNavigate } from "react-router-dom";
+import MainNavbar from "../components/Navbar/MainNavbar/MainNavbar";
 
 const Homepage = () => {
   const navigate = useNavigate();
