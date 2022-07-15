@@ -16,6 +16,7 @@ const SearchInput = () => {
           onFocus={() => setIsHovered(true)}
           onBlur={() => setIsHovered(false)}
           placeholder="Search..."
+          maxLength={128}
           className="bg-gray-100 text-sm h-10 w-full rounded-full px-5 outline-none transition"
         />
         <div className="mx-2">
@@ -23,7 +24,7 @@ const SearchInput = () => {
             role="button"
             className="h-8 w-8 flex transition items-center active:bg-gray-300 hover:bg-gray-200 justify-center rounded-full"
           >
-            <i class="far fa-search"></i>
+            <i className="far fa-search"></i>
           </div>
         </div>
       </div>

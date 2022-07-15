@@ -1,26 +1,21 @@
-import useGetUserDetails from "../../../../hooks/useGetUserDetails";
-import CartButton from "./Buttons/CartButton";
-import MobileMenu from "./Buttons/MobileMenu";
-import NotificationButton from "./Buttons/NotificationButton";
-import ProfileButton from "./Buttons/ProfileButton";
+import Account from "./Account";
+import MobileMenu from "./MobileMenu";
+import Cart from "./Cart";
 import MobileSearchInput from "./MobileSearch";
+import Notification from "./Notification";
 
 const RightEndMenu = () => {
-  const { user } = useGetUserDetails();
-  const profilePicture = user?.profilePicture;
-
   return (
     <div className="flex">
       <MobileSearchInput />
       {/* notifications */}
-      <NotificationButton />
+      <Notification />
 
       {/* car icon */}
-      <CartButton />
+      <Cart />
 
       {/* for larger than tablet only */}
-      <ProfileButton profile={profilePicture} />
-
+      <Account />
       {/* //for mobile */}
       <MobileMenu />
     </div>

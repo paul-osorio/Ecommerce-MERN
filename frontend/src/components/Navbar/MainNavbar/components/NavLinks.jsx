@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const NavLinks = () => {
   return (
@@ -8,7 +8,7 @@ const NavLinks = () => {
           <NavLink
             to=""
             className={({ isActive }) =>
-              isActive && "text-purple-500 font-medium"
+              isActive ? "text-purple-500 font-medium" : undefined
             }
           >
             Home
@@ -18,7 +18,7 @@ const NavLinks = () => {
           <NavLink
             to="shops"
             className={({ isActive }) =>
-              isActive && "text-purple-500 font-medium"
+              isActive ? "text-purple-500 font-medium" : undefined
             }
           >
             Shops
@@ -28,7 +28,7 @@ const NavLinks = () => {
           <NavLink
             to="help"
             className={({ isActive }) =>
-              isActive && "text-purple-500 font-medium"
+              isActive ? "text-purple-500 font-medium" : undefined
             }
           >
             Help
