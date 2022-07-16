@@ -4,7 +4,7 @@ const SearchTextField = () => {
       <input
         type="search"
         placeholder="Search Products"
-        className="bg-gray-100 w-full rounded-full p-2 px-4 text-sm outline-none shadow shadow-gray-300"
+        className="bg-gray-100 w-full rounded-full p-2 px-4 text-sm outline-none focus:shadow focus:shadow-purple-300"
       />
     </div>
   );

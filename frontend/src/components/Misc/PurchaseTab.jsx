@@ -2,7 +2,7 @@ import { matchPath, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Links = [
-  { to: "/mypurchase/all", Name: "All" },
+  { to: "/mypurchase", Name: "All" },
   { to: "/mypurchase/topay", Name: "To Pay" },
   { to: "/mypurchase/toship", Name: "To Ship" },
   { to: "/mypurchase/toreceive", Name: "To Recieve" },
@@ -14,7 +14,7 @@ const PurchaseTab = () => {
   const { pathname } = useLocation();
   return (
     <div className="px-3 py-3">
-      <div className="bg-white border rounded-full w-full">
+      <div className="bg-white border tablet:rounded-full mobile:rounded-3xl w-full">
         <div className="grid grid-cols-6 h-full">
           {Links.map((link, i) => (
             <TabLink

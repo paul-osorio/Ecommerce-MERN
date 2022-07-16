@@ -33,8 +33,8 @@ function App() {
           <Route element={<SettingsLayout />}>
             <Route path="/myaccount" element={<MyAccount />} />
             {/* purchase route */}
-            <Route path="/mypurchase/" element={<MyPurchaseLayout />}>
-              <Route path="all" element={<AllPurchase />} />
+            <Route path="/mypurchase" element={<MyPurchaseLayout />}>
+              <Route path="" element={<AllPurchase />} />
               <Route path="topay" element={<ToPay />} />
               <Route path="toship" element={<ToShip />} />
               <Route path="toreceive" element={<ToReceive />} />

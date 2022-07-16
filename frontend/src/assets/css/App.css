@@ -1,7 +1,6 @@
 * {
   font-family: "Roboto";
 }
-
 .newscrollbar::-webkit-scrollbar {
   width: 5px;
   background-color: rgb(230, 230, 230);
@@ -9,5 +8,16 @@
 
 .newscrollbar::-webkit-scrollbar-thumb {
   background: #c084fc;
+  border-radius: 50px;
+}
+
+.grayscrollbar::-webkit-scrollbar {
+  width: 5px;
+  background-color: rgb(230, 230, 230);
+  margin-left: 10px;
+}
+
+.grayscrollbar::-webkit-scrollbar-thumb {
+  background: gray;
   border-radius: 50px;
 }

@@ -1,9 +1,15 @@
+import PurchaseCard from "../../components/Card/PurchaseCard";
 import PurchaseContainer from "../../components/Containers/PurchaseContainer";
 
 const AllPurchase = () => {
   return (
     <PurchaseContainer>
-      <NoPurchase />
+      <PurchaseCard Shop="Example Shop" Status="Received" />
+      <PurchaseCard Shop="Example Shop" Status="Delivered" />
+      <PurchaseCard Shop="Example Shop" Status="Received" />
+      <PurchaseCard Shop="Example Shop" Status="Received" />
+
+      {/* <NoPurchase /> */}
     </PurchaseContainer>
   );
 };
