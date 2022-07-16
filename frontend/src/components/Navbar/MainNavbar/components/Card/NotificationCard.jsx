@@ -9,7 +9,7 @@ export const NotifCard = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ type: "tween", duration: 0.2 }}
-      className="z-20 absolute w-72 tablet:right-0 mobile:-right-10 bg-white shadow shadow-gray-300 rounded-xl"
+      className="z-50 absolute w-72 tablet:right-0 mobile:-right-10 bg-white shadow shadow-gray-300 rounded-xl"
     >
       <div className="w-full rounded-t-xl text-gray-500 text-sm bg-gray-50 p-2 py-3">
         Recent Notifications

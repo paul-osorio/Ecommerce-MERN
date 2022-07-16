@@ -12,6 +12,6 @@ const {
 router.get("", isAuthenticated, getUserDetails);
 
 //update user by id
-router.put("/:id", isAuthenticated, updateUserById);
+router.patch("/", isAuthenticated, updateUserById);
 
 module.exports = router;

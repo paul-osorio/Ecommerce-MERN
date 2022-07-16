@@ -7,7 +7,7 @@ import Title from "./components/Title";
 
 const MainNavbar = () => {
   return (
-    <nav className="h-16  border-b border-t-indigo-500 bg-white mb-2">
+    <nav className="h-16  border-b border-t-indigo-500 bg-white top-0 fixed w-full">
       <div className="flex items-center justify-between h-full relative">
         <Title />
         {/* div for menus */}

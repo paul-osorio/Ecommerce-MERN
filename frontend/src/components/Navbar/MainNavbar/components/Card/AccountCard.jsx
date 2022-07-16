@@ -12,11 +12,12 @@ const AccountCard = () => {
 
   return (
     <motion.div
+      onClick={() => navigate("/myaccount")}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ type: "tween", duration: 0.2 }}
-      className="z-20 absolute w-44 right-2 bg-white py-2  shadow shadow-gray-300 rounded-xl"
+      className="z-50 absolute w-44 right-2 bg-white py-2  shadow shadow-gray-300 rounded-xl"
     >
       <Links
         Title="My Account"
@@ -35,7 +36,7 @@ const AccountCard = () => {
   );
 };
 
-const Links = ({ Title, Icon, onClick }) => {
+export const Links = ({ Title, Icon, onClick }) => {
   return (
     <div className="px-2">
       <div

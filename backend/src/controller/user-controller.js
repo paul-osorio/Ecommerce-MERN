@@ -18,12 +18,26 @@ const getUserById = async (req, res) => {
 };
 
 const updateUserById = async (req, res) => {
-  const _id = req.params.id;
+  const { _id } = req.user;
+  const body = req.body;
+  const data = {
+    nameFirst: body.nameFirst,
+    nameLast: body.nameLast,
+    email: body.email,
+    phoneNumber: body.phoneNumber,
+    gender: body.gender,
+    dateOfBirth: {
+      month: body.month,
+      day: body.day,
+      year: body.year,
+    },
+  };
+
   try {
-    const user = await UserModel.findByIdAndUpdate(_id, req.body);
-    res.json(user);
+    const user = await UserModel.findByIdAndUpdate(_id, data);
+    res.status(200).json({ success: true });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ success: false });
   }
 };
 

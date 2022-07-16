@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 const ProfileButton = ({ profile }) => {
+  const navigate = useNavigate();
   return (
     <div
       role="button"
