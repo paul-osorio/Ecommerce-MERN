@@ -1,5 +1,12 @@
+import PurchaseContainer from "../../components/Containers/PurchaseContainer";
+import { NoPurchase } from "./All";
+
 const Cancelled = () => {
-  return <h1>Cancelled</h1>;
+  return (
+    <PurchaseContainer>
+      <NoPurchase />
+    </PurchaseContainer>
+  );
 };
 
 export default Cancelled;

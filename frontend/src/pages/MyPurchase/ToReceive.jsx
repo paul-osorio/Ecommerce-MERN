@@ -1,5 +1,12 @@
+import PurchaseContainer from "../../components/Containers/PurchaseContainer";
+import { NoPurchase } from "./All";
+
 const ToReceive = () => {
-  return <h1>ToReceive</h1>;
+  return (
+    <PurchaseContainer>
+      <NoPurchase />
+    </PurchaseContainer>
+  );
 };
 
 export default ToReceive;

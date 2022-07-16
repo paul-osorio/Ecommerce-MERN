@@ -12,8 +12,6 @@ const Links = [
 
 const PurchaseTab = () => {
   const { pathname } = useLocation();
-  //   const match = matchPath();
-  console.log(pathname);
   return (
     <div className="px-3 py-3">
       <div className="bg-white border rounded-full w-full">
@@ -41,11 +39,12 @@ const TabLink = ({ to, Name, isSelected }) => {
       className="w-full h-10 tablet:col-span-1 mobile:col-span-2 flex flex-col items-center justify-center  relative"
     >
       <motion.span
-        className="z-[2] text-sm hover:text-black text-gray-200 "
+        className="z-[2] text-sm"
+        initial={false}
         animate={{
-          color: isSelected ? "white" : undefined,
+          color: isSelected ? "#fafafa" : "black",
         }}
-        transition={{ delay: 0.1 }}
+        transition={{ delay: 0.1, duration: 0.05 }}
       >
         {Name}
       </motion.span>

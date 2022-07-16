@@ -1,5 +1,12 @@
+import PurchaseContainer from "../../components/Containers/PurchaseContainer";
+import { NoPurchase } from "./All";
+
 const ToPay = () => {
-  return <h1>ToPay</h1>;
+  return (
+    <PurchaseContainer>
+      <NoPurchase />
+    </PurchaseContainer>
+  );
 };
 
 export default ToPay;

@@ -11,7 +11,7 @@ const SettingsLayout = () => {
         <div className="flex mt-5">
           <div className="w-52 flex flex-col space-y-1 mr-2 mobile:hidden tablet:flex">
             <CustomAccountLinks Name="My Account" to="myaccount" />
-            <CustomAccountLinks Name="My Purchase" to="mypurchase" />
+            <CustomAccountLinks Name="My Purchase" to="mypurchase/all" />
             <CustomAccountLinks Name="Notifications" to="notifications" />
           </div>
           <div className="w-full bg-white shadow rounded-xl">
