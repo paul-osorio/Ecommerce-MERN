@@ -13,7 +13,9 @@ const Cart = () => {
       onMouseEnter={() => setIsOpen(true)}
     >
       <CartButton />
-      <AnimatePresence>{isOpen && <CartCard />}</AnimatePresence>
+      <AnimatePresence>
+        {isOpen && <CartCard onClose={() => setIsOpen(false)} />}
+      </AnimatePresence>
     </div>
   );
 };

@@ -19,6 +19,7 @@ import ToReceive from "./pages/MyPurchase/ToReceive";
 import Completed from "./pages/MyPurchase/Completed";
 import Cancelled from "./pages/MyPurchase/Cancelled";
 import AllPurchase from "./pages/MyPurchase/All";
+import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="" element={<Homepage />} />
           <Route path="shops" element={<ShopsPage />} />
           <Route path="help" element={<HelpPage />} />
+          <Route path="cart" element={<ShoppingCart />} />
           <Route element={<SettingsLayout />}>
             <Route path="/myaccount" element={<MyAccount />} />
             {/* purchase route */}

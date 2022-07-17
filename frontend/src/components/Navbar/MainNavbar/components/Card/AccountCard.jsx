@@ -12,7 +12,6 @@ const AccountCard = () => {
 
   return (
     <motion.div
-      onClick={() => navigate("/myaccount")}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -20,10 +19,12 @@ const AccountCard = () => {
       className="z-50 absolute w-44 right-2 bg-white py-2  shadow shadow-gray-300 rounded-xl"
     >
       <Links
+        onClick={() => navigate("/myaccount")}
         Title="My Account"
         Icon={<i class="text-sm fad fa-user-alt "></i>}
       />
       <Links
+        onClick={() => navigate("/mypurchase")}
         Title="My Purchase"
         Icon={<i class="text-sm fad fa-money-check-alt"></i>}
       />

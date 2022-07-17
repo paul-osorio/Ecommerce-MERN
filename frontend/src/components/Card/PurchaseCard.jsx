@@ -1,7 +1,7 @@
 const PurchaseCard = ({ Shop, Status }) => {
   return (
-    <div className="border rounded-lg mb-3">
-      <div className="flex justify-between py-2 px-3 border-b ">
+    <div className="border rounded-lg mb-3 h-32">
+      <div className="flex justify-between py-2 px-3 border-b">
         <div className="flex items-center space-x-2">
           <i className="fad fa-store"></i>
           <h1 className="text-gray-600 text-sm font-medium">{Shop}</h1>
