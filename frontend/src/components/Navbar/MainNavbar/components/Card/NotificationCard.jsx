@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import truncateText from "../../../../../helper/truncateText";
 
-export const NotifCard = () => {
+export const NotifCard = ({ onClose }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -26,7 +26,7 @@ export const NotifCard = () => {
         <NotifMessageCard Message="Lorem ipsum dolor sit amet consectetur asfasfasadipisicing elit.Repudiandae,asfasfasf" />
       </div>
       {/* <NoNotifMessage /> */}
-      <SeeAllLink />
+      <SeeAllLink onClick={onClose} />
     </motion.div>
   );
 };
@@ -67,12 +67,13 @@ const NoNotifMessage = () => {
   );
 };
 
-const SeeAllLink = () => {
+const SeeAllLink = ({ onClick }) => {
   return (
     <div className="">
       <div className="w-full text-gray-500 text-sm text-center bg-gray-50 rounded-b-xl p-2">
         <Link
-          to="/"
+          onClick={onClick}
+          to="/notifications"
           className="hover:text-purple-500 hover:border-b hover:border-b-purple-500 transition"
         >
           See all

@@ -15,7 +15,9 @@ const Notification = () => {
       onMouseEnter={() => setIsOpen(true)}
     >
       <NotificationButton />
-      <AnimatePresence>{isOpen && <NotifCard />}</AnimatePresence>
+      <AnimatePresence>
+        {isOpen && <NotifCard onClose={() => setIsOpen(false)} />}
+      </AnimatePresence>
     </div>
   );
 };

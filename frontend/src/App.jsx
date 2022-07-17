@@ -11,7 +11,6 @@ import HelpPage from "./pages/Help";
 import ShopsPage from "./pages/Shops";
 import MyAccount from "./pages/MyAccount/MyAccount";
 import SettingsLayout from "./components/Layout/SettingsLayout";
-import MyPurchase from "./pages/MyPurchase/MyPurchase";
 import MyPurchaseLayout from "./components/Layout/MyPurchaseLayout";
 import ToPay from "./pages/MyPurchase/ToPay";
 import ToShip from "./pages/MyPurchase/ToShip";
@@ -20,6 +19,7 @@ import Completed from "./pages/MyPurchase/Completed";
 import Cancelled from "./pages/MyPurchase/Cancelled";
 import AllPurchase from "./pages/MyPurchase/All";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
+import Notifications from "./pages/Notifications/Notifications";
 
 function App() {
   return (
@@ -44,6 +44,7 @@ function App() {
               <Route path="cancelled" element={<Cancelled />} />
             </Route>
             {/* purchase route */}
+            <Route path="notifications" element={<Notifications />} />
           </Route>
         </Route>
       </Route>
