@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useEffect } from "react";
 import useArrangeAddress from "../../../hooks/useArrangaAddress";
 import useGetUserDetails from "../../../hooks/useGetUserDetails";
 
@@ -27,7 +29,7 @@ const TotalCard = () => {
   );
 };
 
-const Prices = ({ Name, Price }) => {
+export const Prices = ({ Name, Price }) => {
   return (
     <>
       <div className="w-full flex items-center my-3 justify-between">
@@ -40,9 +42,20 @@ const Prices = ({ Name, Price }) => {
 };
 
 const Container = ({ children }) => {
+  const [shadow, setShadow] = useState("shadow");
+
+  useEffect(() => {
+    window.onscroll = function () {
+      if (window.scrollY > 0) {
+        setShadow("shadow-lg");
+      } else {
+        setShadow("shadow");
+      }
+    };
+  }, []);
   return (
-    <div className="tablet:block mobile:hidden w-[45%]">
-      <div className=" bg-white shadow rounded-lg">{children}</div>
+    <div className="sticky top-20 right-20">
+      <div className={" bg-white rounded-lg " + shadow}>{children}</div>
     </div>
   );
 };
