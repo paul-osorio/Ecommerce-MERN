@@ -106,10 +106,10 @@ const Profile = ({ Picture, onClick }) => {
       <div className="w-full h-full relative">
         <img
           src={Picture}
-          className="object-cover h-full w-full rounded-full"
+          className="object-cover h-16 w-16 rounded-full"
           alt=""
         />
-        <div className="absolute group-hover:opacity-100 opacity-0 transition-all text-indigo-500 -bottom-2 right-0">
+        <div className="absolute transition-all text-indigo-500 -bottom-2 right-0">
           <div className="bg-white rounded-full h-6 w-6 flex items-center justify-center">
             <i className="fad fa-plus-circle text-[24px] rounded-full"></i>
           </div>
