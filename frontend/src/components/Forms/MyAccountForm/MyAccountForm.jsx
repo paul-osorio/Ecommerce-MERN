@@ -56,10 +56,26 @@ const MyAccountForm = () => {
               </div>
               <hr className="my-4" />
               <div className="grid grid-cols-4 gap-y-2 gap-x-5 ">
-                <GridTextField label="First Name" Column="2" name="nameFirst" />
-                <GridTextField label="Last Name" Column="2" name="nameLast" />
+                <div className="tablet:col-span-2 mobile:col-span-full">
+                  <GridTextField
+                    label="First Name"
+                    Column="2"
+                    name="nameFirst"
+                  />
+                </div>
+                <div className="tablet:col-span-2 mobile:col-span-full">
+                  <GridTextField label="Last Name" Column="2" name="nameLast" />
+                </div>
+
                 <hr className="my-2 col-span-full" />
-                <GridTextField Column="2" label="Email Address" name="email" />
+                <div className="tablet:col-span-2 mobile:col-span-full">
+                  <GridTextField
+                    Column="2"
+                    label="Email Address"
+                    name="email"
+                  />
+                </div>
+
                 <GridTextField
                   Column="1"
                   label="Mobile Number"

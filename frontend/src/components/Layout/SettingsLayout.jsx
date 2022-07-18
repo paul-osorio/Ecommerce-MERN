@@ -13,6 +13,7 @@ const SettingsLayout = () => {
             <CustomAccountLinks Name="My Account" to="myaccount" />
             <CustomAccountLinks Name="My Purchase" to="mypurchase" />
             <CustomAccountLinks Name="Notifications" to="notifications" />
+            <CustomAccountLinks Name="My Shop" to="myshop" />
           </div>
           <div className="w-full bg-white shadow rounded-xl">
             <Outlet />

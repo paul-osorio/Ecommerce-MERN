@@ -20,6 +20,7 @@ import Cancelled from "./pages/MyPurchase/Cancelled";
 import AllPurchase from "./pages/MyPurchase/All";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import Notifications from "./pages/Notifications/Notifications";
+import MyShop from "./pages/MyShop/MyShop";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             </Route>
             {/* purchase route */}
             <Route path="notifications" element={<Notifications />} />
+            <Route path="myshop" element={<MyShop />} />
           </Route>
         </Route>
       </Route>

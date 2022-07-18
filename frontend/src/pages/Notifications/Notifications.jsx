@@ -1,7 +1,7 @@
 const Notifications = () => {
   return (
     <div className="p-5">
-      <h1 className="font-medium text-xl text-gray-600 mb-5">Notifications</h1>
+      <h1 className="font-bold text-gray-700 text-2xl mb-5">Notifications</h1>
       <div>
         <NotificationCard
           Title="Your order is successfull asfsaf as asf asf asf "
@@ -44,7 +44,10 @@ const NotificationCard = ({ Title, Content }) => {
           </div>
         </div>
         <div className="w-44">
-          <div className="flex items-center justify-center border rounded-full text-xs px-3 py-2">
+          <div
+            role="button"
+            className="flex hover:border-purple-600 transition hover:text-purple-600 items-center justify-center border rounded-full text-xs px-3 py-2"
+          >
             View Details
           </div>
         </div>

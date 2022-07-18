@@ -3,7 +3,7 @@ import { useField } from "formik";
 const GridTextField = ({ label, Column, ...props }) => {
   const [field, meta, helpers] = useField(props);
   return (
-    <div className={`tablet:col-span-${Column} mobile:col-span-full`}>
+    <div className="">
       <label className="block text-sm font-bold text-gray-800">{label}</label>
       <input
         {...props}
