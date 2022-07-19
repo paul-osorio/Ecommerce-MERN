@@ -21,17 +21,17 @@ const AccountCard = () => {
       <Links
         onClick={() => navigate("/myaccount")}
         Title="My Account"
-        Icon={<i class="text-sm fad fa-user-alt "></i>}
+        Icon={<i className="text-sm fad fa-user-alt "></i>}
       />
       <Links
         onClick={() => navigate("/mypurchase")}
         Title="My Purchase"
-        Icon={<i class="text-sm fad fa-money-check-alt"></i>}
+        Icon={<i className="text-sm fad fa-money-check-alt"></i>}
       />
       <Links
         onClick={SignOut}
         Title="Sign Out"
-        Icon={<i class="fad fa-sign-out-alt"></i>}
+        Icon={<i className="fad fa-sign-out-alt"></i>}
       />
     </motion.div>
   );

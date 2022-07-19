@@ -1,0 +1,352 @@
+[
+  {
+    "cat_id": "1",
+    "cat_name": "Electronics",
+    "cat_slug": "electronics",
+    "cat_parent": "0"
+  },
+  {
+    "cat_id": "2",
+    "cat_name": "Computers",
+    "cat_slug": "computers",
+    "cat_parent": "0"
+  },
+  {
+    "cat_id": "3",
+    "cat_name": "Smart Home",
+    "cat_slug": "smart-home",
+    "cat_parent": "0"
+  },
+  {
+    "cat_id": "4",
+    "cat_name": "Arts & Crafts",
+    "cat_slug": "arts-crafts",
+    "cat_parent": "0"
+  },
+  {
+    "cat_id": "5",
+    "cat_name": "Automotive",
+    "cat_slug": "automotive",
+    "cat_parent": "0"
+  },
+  { "cat_id": "6", "cat_name": "Baby", "cat_slug": "baby", "cat_parent": "0" },
+  {
+    "cat_id": "7",
+    "cat_name": "Books",
+    "cat_slug": "books",
+    "cat_parent": "0"
+  },
+  {
+    "cat_id": "8",
+    "cat_name": "Women's Fashion",
+    "cat_slug": "womens-fashion",
+    "cat_parent": "0"
+  },
+  {
+    "cat_id": "9",
+    "cat_name": "Pet Supplies",
+    "cat_slug": "pet-supplies",
+    "cat_parent": "0"
+  },
+  {
+    "cat_id": "10",
+    "cat_name": "Sports & Fitness",
+    "cat_slug": "sports-fitness",
+    "cat_parent": "0"
+  },
+  {
+    "cat_id": "11",
+    "cat_name": "Televisions",
+    "cat_slug": "televisions",
+    "cat_parent": "1"
+  },
+  {
+    "cat_id": "12",
+    "cat_name": "Speakers",
+    "cat_slug": "speakers",
+    "cat_parent": "1"
+  },
+  {
+    "cat_id": "13",
+    "cat_name": "Cameras",
+    "cat_slug": "cameras",
+    "cat_parent": "1"
+  },
+  {
+    "cat_id": "14",
+    "cat_name": "GPS & Navigations",
+    "cat_slug": "gps-navigations",
+    "cat_parent": "1"
+  },
+  {
+    "cat_id": "15",
+    "cat_name": "Video Projectors",
+    "cat_slug": "video-projectors",
+    "cat_parent": "1"
+  },
+  {
+    "cat_id": "16",
+    "cat_name": "Desktops",
+    "cat_slug": "desktops",
+    "cat_parent": "2"
+  },
+  {
+    "cat_id": "17",
+    "cat_name": "Drives & Storage",
+    "cat_slug": "drives-storage",
+    "cat_parent": "2"
+  },
+  {
+    "cat_id": "18",
+    "cat_name": "Monitors",
+    "cat_slug": "monitors",
+    "cat_parent": "2"
+  },
+  {
+    "cat_id": "19",
+    "cat_name": "Computer Accessories",
+    "cat_slug": "computer-accessories",
+    "cat_parent": "2"
+  },
+  {
+    "cat_id": "20",
+    "cat_name": "Printers & Ink",
+    "cat_slug": "printers-ink",
+    "cat_parent": "2"
+  },
+  {
+    "cat_id": "23",
+    "cat_name": "Plugs & Outlets",
+    "cat_slug": "plugs-outlets",
+    "cat_parent": "3"
+  },
+  {
+    "cat_id": "24",
+    "cat_name": "Security Cameras & System",
+    "cat_slug": "security-cameras-system",
+    "cat_parent": "3"
+  },
+  {
+    "cat_id": "25",
+    "cat_name": "Heating & Cooling",
+    "cat_slug": "heating-cooling",
+    "cat_parent": "3"
+  },
+  {
+    "cat_id": "26",
+    "cat_name": "Vaccums & Mops",
+    "cat_slug": "vaccums-mops",
+    "cat_parent": "3"
+  },
+  {
+    "cat_id": "27",
+    "cat_name": "Detectors & Sensors",
+    "cat_slug": "detectors-sensors",
+    "cat_parent": "3"
+  },
+  {
+    "cat_id": "30",
+    "cat_name": "Crafting",
+    "cat_slug": "crafting",
+    "cat_parent": "4"
+  },
+  {
+    "cat_id": "31",
+    "cat_name": "Party Decoration & Supplies",
+    "cat_slug": "party-decoration-supplies",
+    "cat_parent": "4"
+  },
+  {
+    "cat_id": "32",
+    "cat_name": "Organization, Storage & Transport",
+    "cat_slug": "organization-storage-transport",
+    "cat_parent": "4"
+  },
+  {
+    "cat_id": "33",
+    "cat_name": "Scrapbooking & Stamping",
+    "cat_slug": "scrapbooking-stamping",
+    "cat_parent": "4"
+  },
+  {
+    "cat_id": "34",
+    "cat_name": "Printmaking",
+    "cat_slug": "printmaking",
+    "cat_parent": "4"
+  },
+  {
+    "cat_id": "37",
+    "cat_name": "Oil & Fluids",
+    "cat_slug": "oil-fluids",
+    "cat_parent": "5"
+  },
+  {
+    "cat_id": "38",
+    "cat_name": "Lights & Lighting Accessories",
+    "cat_slug": "lights-lighting-accessories",
+    "cat_parent": "5"
+  },
+  {
+    "cat_id": "39",
+    "cat_name": "Paint & Paint Supplies",
+    "cat_slug": "paint-paint-supplies",
+    "cat_parent": "5"
+  },
+  {
+    "cat_id": "40",
+    "cat_name": "Motorcycles & Powersports",
+    "cat_slug": "motorcycles-powersports",
+    "cat_parent": "5"
+  },
+  {
+    "cat_id": "41",
+    "cat_name": "Interior Accessories",
+    "cat_slug": "interior-accessories",
+    "cat_parent": "5"
+  },
+  {
+    "cat_id": "44",
+    "cat_name": "Diapering",
+    "cat_slug": "diapering",
+    "cat_parent": "6"
+  },
+  {
+    "cat_id": "45",
+    "cat_name": "Baby bath, Skin & Grooming",
+    "cat_slug": "baby-bath-skin-grooming",
+    "cat_parent": "6"
+  },
+  {
+    "cat_id": "46",
+    "cat_name": "Baby Care",
+    "cat_slug": "baby-care",
+    "cat_parent": "6"
+  },
+  {
+    "cat_id": "47",
+    "cat_name": "Strollers & Accessories",
+    "cat_slug": "strollers-accessories",
+    "cat_parent": "6"
+  },
+  {
+    "cat_id": "48",
+    "cat_name": "Baby Stationery",
+    "cat_slug": "baby-stationery",
+    "cat_parent": "6"
+  },
+  {
+    "cat_id": "51",
+    "cat_name": "Indian Language Books",
+    "cat_slug": "indian-language-books",
+    "cat_parent": "7"
+  },
+  {
+    "cat_id": "52",
+    "cat_name": "Children&#039;s Books",
+    "cat_slug": "childrens-books",
+    "cat_parent": "7"
+  },
+  {
+    "cat_id": "53",
+    "cat_name": "Kindle eBooks",
+    "cat_slug": "kindle-ebooks",
+    "cat_parent": "7"
+  },
+  {
+    "cat_id": "54",
+    "cat_name": "Fiction Books",
+    "cat_slug": "fiction-books",
+    "cat_parent": "7"
+  },
+  {
+    "cat_id": "55",
+    "cat_name": "School Textbooks",
+    "cat_slug": "school-textbooks",
+    "cat_parent": "7"
+  },
+  {
+    "cat_id": "58",
+    "cat_name": "Nightwear",
+    "cat_slug": "nightwear",
+    "cat_parent": "8"
+  },
+  {
+    "cat_id": "59",
+    "cat_name": "Lingerie",
+    "cat_slug": "lingerie",
+    "cat_parent": "8"
+  },
+  {
+    "cat_id": "60",
+    "cat_name": "Ethnic Wear",
+    "cat_slug": "ethnic-wear",
+    "cat_parent": "8"
+  },
+  {
+    "cat_id": "61",
+    "cat_name": "Clothing",
+    "cat_slug": "clothing",
+    "cat_parent": "8"
+  },
+  {
+    "cat_id": "62",
+    "cat_name": "Western Wear",
+    "cat_slug": "western-wear",
+    "cat_parent": "8"
+  },
+  {
+    "cat_id": "65",
+    "cat_name": "Fish & Aquatic Pets",
+    "cat_slug": "fish-aquatic-pets",
+    "cat_parent": "9"
+  },
+  {
+    "cat_id": "66",
+    "cat_name": "Birds",
+    "cat_slug": "birds",
+    "cat_parent": "9"
+  },
+  { "cat_id": "67", "cat_name": "Cats", "cat_slug": "cats", "cat_parent": "9" },
+  {
+    "cat_id": "68",
+    "cat_name": "Reptiles & Amphibians",
+    "cat_slug": "reptiles-amphibians",
+    "cat_parent": "9"
+  },
+  {
+    "cat_id": "69",
+    "cat_name": "Small Animals",
+    "cat_slug": "small-animals",
+    "cat_parent": "9"
+  },
+  {
+    "cat_id": "72",
+    "cat_name": "Yoga",
+    "cat_slug": "yoga",
+    "cat_parent": "10"
+  },
+  {
+    "cat_id": "73",
+    "cat_name": "Cycling",
+    "cat_slug": "cycling",
+    "cat_parent": "10"
+  },
+  {
+    "cat_id": "74",
+    "cat_name": "Cardio Equipment",
+    "cat_slug": "cardio-equipment",
+    "cat_parent": "10"
+  },
+  {
+    "cat_id": "75",
+    "cat_name": "Fitness Accessories",
+    "cat_slug": "fitness-accessories",
+    "cat_parent": "10"
+  },
+  {
+    "cat_id": "76",
+    "cat_name": "Cricket",
+    "cat_slug": "cricket",
+    "cat_parent": "10"
+  }
+]

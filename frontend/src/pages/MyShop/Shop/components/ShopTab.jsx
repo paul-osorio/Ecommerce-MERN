@@ -25,6 +25,11 @@ const ShopTab = () => {
         isSelected={newType === 2}
         onClick={() => setSearchParams({ type: 2 })}
       />
+      <ShopButton
+        Name="Orders"
+        isSelected={newType === 3}
+        onClick={() => setSearchParams({ type: 3 })}
+      />
     </div>
   );
 };
@@ -46,7 +51,7 @@ const ShopButton = ({ Name, isSelected, onClick }) => {
       </span>
       {isSelected && (
         <motion.div
-          layoutId="outline"
+          layoutId="shoptab"
           initial={false}
           className="bg-white h-full w-full rounded-lg absolute shadow"
         />

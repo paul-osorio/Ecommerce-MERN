@@ -1,4 +1,5 @@
 import { useShopContext } from "../../../context/ShopContext";
+import AddProduct from "./AddProduct";
 import ShopTab from "./components/ShopTab";
 import MyShop from "./MyShop";
 import Products from "./Products";
@@ -11,6 +12,7 @@ const Shop = () => {
       <ShopTab />
       {type === null && <MyShop />}
       {newType === 1 && <Products />}
+      {newType === 2 && <AddProduct />}
     </div>
   );
 };
