@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import { convertFromRaw } from "draft-js";
 
 export const BasicValidation = Yup.object().shape({
   images: Yup.array()

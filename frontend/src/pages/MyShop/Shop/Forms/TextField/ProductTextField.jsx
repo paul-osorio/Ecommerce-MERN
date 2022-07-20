@@ -7,7 +7,10 @@ const ProducTextField = ({ label, ...props }) => {
       <label className="block text-sm text-gray-500">{label}</label>
       <div className="relative flex items-center">
         <input
-          className="w-full pr-1 text-sm border px-3 py-2 outline-none focus:ring-1 focus:ring-orange-500 rounded"
+          className={
+            (meta.touched && meta.error ? "ring-red-500 ring-1" : null) +
+            " w-full pr-1 text-sm border px-3 py-2 outline-none focus:ring-1 focus:ring-orange-500 rounded"
+          }
           {...props}
           {...field}
         />

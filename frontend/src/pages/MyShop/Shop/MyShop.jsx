@@ -7,7 +7,7 @@ const MyShop = () => {
       </div>
       <div className="mt-8">
         <div className="border p-3 rounded-lg">
-          <h1 className="font-medium text-gray-800">Description:</h1>
+          <span className="font-medium block text-gray-800">Description:</span>
         </div>
       </div>
     </div>

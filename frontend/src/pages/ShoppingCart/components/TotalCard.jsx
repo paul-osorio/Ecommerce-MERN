@@ -14,7 +14,7 @@ const TotalCard = () => {
       </div>
       <hr />
       <div className="px-5 py-5 w-full">
-        <h1 className="mb-3 font-medium">Order Summary</h1>
+        <h4 className="mb-3 font-medium">Order Summary</h4>
         <Prices Name="Subtotal" Price={500} />
         <Prices Name="Shipping" Price={500} />
         <div className="flex justify-between font-bold mt-5 mb-5 text-gray-600">

@@ -42,7 +42,7 @@ const NotifMessageCard = ({ Message }) => {
           <div className="h-10 w-10 bg-red-500 rounded"></div>
         </div>
         <div className="w-full h-18 ">
-          <h1 className="text-sm font-medium">Title</h1>
+          <span className="text-sm font-medium">Title</span>
           <p className="text-xs text-gray-500">{truncateText(Message, 55)}</p>
         </div>
       </div>

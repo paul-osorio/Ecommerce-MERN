@@ -18,7 +18,7 @@ const PriceTextField = (props) => {
           {...props}
           {...field}
           className={
-            "w-full outline-none border h-10 px-3 " +
+            "w-full outline-none border h-10 px-3  focus:border-orange-500 " +
             (!props.logo && "rounded-r-lg")
           }
           type="text"

@@ -1,8 +1,10 @@
-import { useCallback, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import ProductDropzone from "./ProductDropzone";
 import cuid from "cuid";
+import { AddProductContext } from "../../context/AddProductContext";
 
 const AddProductFileField = (props) => {
+  const { formData, setFormData } = useContext(AddProductContext);
   const [images, setImages] = useState([]);
   const { setFieldValue } = props;
   const onDrop = (acceptedFiles) => {
@@ -22,7 +24,9 @@ const AddProductFileField = (props) => {
   };
 
   useEffect(() => {
-    setFieldValue("images", images);
+    if (formData.images === undefined || formData.images.length === 0) {
+      setFieldValue("images", images);
+    }
   }, [images]);
 
   return (

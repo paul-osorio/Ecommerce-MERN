@@ -35,9 +35,9 @@ const MyAccountForm = () => {
           <Form>
             <div className="">
               <div>
-                <h1 className="font-bold mt-3 text-gray-600">
+                <span className="font-bold mt-3 text-gray-600">
                   Profile Picture
-                </h1>
+                </span>
                 <div className="flex items-center space-x-5">
                   <img
                     src={profile}

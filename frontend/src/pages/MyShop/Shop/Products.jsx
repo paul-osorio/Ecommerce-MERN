@@ -1,7 +1,6 @@
 const Products = () => {
   return (
     <div className="mt-2">
-      {/* <h1>hi</h1> */}
       <EmptyProducts />
     </div>
   );

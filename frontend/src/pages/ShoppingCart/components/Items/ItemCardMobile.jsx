@@ -8,7 +8,7 @@ const ItemCardMobile = () => {
   return (
     <div className="absolute bottom-3 right-0 mobile:block laptop:hidden w-full pr-5 pl-[132px]">
       <div className="flex items-center justify-between w-full">
-        <h1 className="text-orange-500 text-sm text-center ">₱ {price}</h1>
+        <span className="text-orange-500 text-sm text-center ">₱ {price}</span>
         <div className="flex  justify-center space-x-3">
           <div role="button">
             <i className="far text-sm text-gray-500 fa-heart"></i>

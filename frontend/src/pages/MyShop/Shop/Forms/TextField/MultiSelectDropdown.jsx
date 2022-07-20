@@ -21,7 +21,10 @@ const MultiSelectDropdown = (props) => {
         onChange={onChange}
         isOptionDisabled={() => options.length >= 3}
         onBlur={setTouched}
-        className="text-sm"
+        className={
+          "text-sm rounded " +
+          (meta.touched && meta.error ? " border border-red-500" : null)
+        }
       />
       {props.description ? (
         <div className="text-gray-400 text-sm">

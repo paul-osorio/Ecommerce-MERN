@@ -1,4 +1,4 @@
-import { Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 import { useContext } from "react";
 import AddProductFileField from "../../../../components/TextField/AddProductTextField";
 import { AddProductContext } from "../../../../context/AddProductContext";
@@ -24,6 +24,7 @@ const BasicForm = () => {
         images: formData?.images || "",
         productName: formData.productName || "",
         productCategory: formData.productCategory || "",
+        something: formData?.images || "",
       }}
       validationSchema={BasicValidation}
       onSubmit={onSubmit}
@@ -31,14 +32,18 @@ const BasicForm = () => {
       {({ values, setFieldValue }) => (
         <Form>
           <div className=" p-5  mt-2">
-            <h1 className="text-lg mb-2">Basic Information</h1>
+            <h1 className="text-lg mb-2 text-gray-500 font-medium">
+              Basic Information
+            </h1>
             <h1 className="text-sm text-gray-500">Product Images</h1>
 
             <AddProductFileField
               values={values.images}
+              name="images"
               setFieldValue={setFieldValue}
             />
             <div className="mb-2" />
+
             <ProducTextField
               type="text"
               name="productName"

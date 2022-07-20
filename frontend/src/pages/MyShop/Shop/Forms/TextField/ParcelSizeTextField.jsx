@@ -5,6 +5,7 @@ const ParcelSizeTextField = (props) => {
   const [field, meta, helpers] = useField(props);
   return (
     <div>
+      <label className="text-sm text-gray-600">{props.label}</label>
       <div
         className={
           "w-full flex items-center rounded-lg " +
@@ -14,13 +15,15 @@ const ParcelSizeTextField = (props) => {
         <input
           {...props}
           {...field}
-          className={"w-full outline-none border h-10 px-3 rounded-l-lg"}
+          className={
+            "w-full outline-none border h-10 px-3 rounded-l-lg focus:border-orange-500 "
+          }
           placeholder="0"
           type="text"
           onKeyPress={numberOnly}
         />
         <div className="bg-gray-200 flex items-center h-10 px-3 rounded-r-lg">
-          <label className="text-gray-600 text-sm">{props.label}</label>
+          <label className="text-gray-600 text-sm">{props.logo}</label>
         </div>
       </div>
       {meta.touched && meta.error ? (

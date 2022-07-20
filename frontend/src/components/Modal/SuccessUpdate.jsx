@@ -15,9 +15,9 @@ const SuccessUpdate = ({ handleClose }) => {
             alt=""
           />
         </div>
-        <h1 className="text-center block text-gray-700 font-medium mt-2">
+        <span className="block text-center block text-gray-700 font-medium mt-2">
           SUCCESS
-        </h1>
+        </span>
         <p className="block text-sm text-center text-gray-500">
           Your account has been <br />
           successfull updated

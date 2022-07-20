@@ -10,24 +10,23 @@ const PriceStock = () => {
   const onPrev = () => setStep(1);
   const onSubmit = (values) => {
     const data = { ...formData, ...values };
-    // setFormData(data);
-    console.log(data);
-    // setFormData(data);
-    // setStep(3);
+    setFormData(data);
+    setStep(3);
   };
   return (
     <Formik
       initialValues={{
-        price: "",
-        stock: "",
+        price: formData?.price || "",
+        stock: formData?.stock || "",
         shipping: {
-          weight: "",
-          length: "",
-          width: "",
-          height: "",
-          fee: "",
+          weight: formData?.shipping?.weight || "",
+          length: formData?.shipping?.length || "",
+          width: formData?.shipping?.width || "",
+          height: formData?.shipping?.height || "",
+          fee: formData?.shipping?.fee || "",
         },
       }}
+      validateOnBlur={false}
       validationSchema={PriceStockValidation}
       enableReinitialize={true}
       onSubmit={onSubmit}
@@ -35,7 +34,9 @@ const PriceStock = () => {
       {({ values, setFieldValue }) => (
         <Form>
           <div className="p-5 mt-2">
-            <h1 className="text-lg mb-2">Price and Stock</h1>
+            <h1 className="text-lg mb-2 text-gray-500 font-medium">
+              Price and Stock
+            </h1>
             <div className="grid grid-cols-2 gap-x-2 gap-y-2 mb-3 border px-5 py-6 rounded-lg">
               <div className="tablet:col-span-1 mobile:col-span-full">
                 <PriceTextField name="price" label="Price" logo="PHP" />
@@ -44,7 +45,9 @@ const PriceStock = () => {
                 <PriceTextField name="stock" label="Stock" />
               </div>
             </div>
-            <h1 className="text-lg mb-2">Shipping Details</h1>
+            <h1 className="text-lg mb-2 text-gray-500 font-medium">
+              Shipping Details
+            </h1>
             <div className="grid grid-cols-2 gap-x-2 gap-y-2 mb-3 border px-5 py-6 rounded-lg">
               <div className="tablet:col-span-1 mobile:col-span-full">
                 <PriceTextField
@@ -57,13 +60,25 @@ const PriceStock = () => {
                 <PriceTextField name="shipping.fee" label="Fee" logo="PHP" />
               </div>
               <div className="col-span-full">
-                <label className="block text-sm text-gray-500">
+                <label className="block text-sm bg-gray-100 py-1 px-2 text-gray-700 font-medium">
                   Parcel Size
                 </label>
                 <div className="flex space-x-2">
-                  <ParcelSizeTextField name="shipping.width" label="cm" />
-                  <ParcelSizeTextField name="shipping.length" label="cm" />
-                  <ParcelSizeTextField name="shipping.height" label="cm" />
+                  <ParcelSizeTextField
+                    name="shipping.width"
+                    label="Width"
+                    logo="cm"
+                  />
+                  <ParcelSizeTextField
+                    name="shipping.length"
+                    label="Length"
+                    logo="cm"
+                  />
+                  <ParcelSizeTextField
+                    name="shipping.height"
+                    label="Height"
+                    logo="cm"
+                  />
                 </div>
               </div>
             </div>

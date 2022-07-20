@@ -3,7 +3,7 @@ import {
   AddProductContext,
   AddProductProvider,
 } from "../../../context/AddProductContext";
-import { BasicForm, PriceStock } from "./Forms";
+import { BasicForm, PriceStock, ProductDescription } from "./Forms";
 
 const AddProductChild = () => {
   const { step } = useContext(AddProductContext);
@@ -16,6 +16,9 @@ const AddProductChild = () => {
       break;
     case 2:
       stepContent = <PriceStock />;
+      break;
+    case 3:
+      stepContent = <ProductDescription />;
       break;
     default:
       break;

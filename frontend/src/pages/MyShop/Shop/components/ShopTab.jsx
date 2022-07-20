@@ -6,7 +6,7 @@ const ShopTab = () => {
   const newType = parseInt(type);
 
   return (
-    <div className="flex mt-2 justify-around space-x-5 bg-gray-100 rounded-lg py-2 px-2">
+    <div className="flex mt-2 justify-around space-x-5 bg-gray-100 shadow-inner rounded-lg py-2 px-2">
       <ShopButton
         Name="My Shop"
         isSelected={type === null}
@@ -43,7 +43,7 @@ const ShopButton = ({ Name, isSelected, onClick }) => {
     >
       <span
         className={
-          (!isSelected && "text-gray-600") +
+          (!isSelected ? "text-gray-600" : "text-purple-600 font-medium") +
           " z-[2] text-center mobile:text-sm tablet:text-base"
         }
       >

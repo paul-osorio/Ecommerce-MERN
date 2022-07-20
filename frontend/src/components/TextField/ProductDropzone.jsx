@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { useDropzone } from "react-dropzone";
 import { AddProductContext } from "../../context/AddProductContext";
 
-const ProductDropzone = ({ onDrop, images, setImages }) => {
+const ProductDropzone = ({ onDrop, images, setImages, ...props }) => {
   const { formData } = useContext(AddProductContext);
   const [field, meta, helpers] = useField("images");
   const { fileRejections, getRootProps, getInputProps, isDragActive } =
@@ -16,7 +16,6 @@ const ProductDropzone = ({ onDrop, images, setImages }) => {
       maxSize: 3000000,
       multiple: true,
     });
-  console.log(formData);
   return (
     <>
       <span className="text-sm text-gray-400">
@@ -25,9 +24,11 @@ const ProductDropzone = ({ onDrop, images, setImages }) => {
       <div
         {...getRootProps()}
         role="button"
-        className="rounded-lg border border-dashed py-10 hover:border-blue-500"
+        className={
+          "rounded-lg border border-dashed py-10 hover:border-blue-500 " +
+          (meta.touched && meta.error ? " border-red-500" : null)
+        }
       >
-        <input name="images" hidden />
         <ImageGrid
           images={images.length > 0 ? images : formData?.images || []}
           setImages={setImages}

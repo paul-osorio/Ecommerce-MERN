@@ -35,9 +35,9 @@ const ItemList = () => {
           <div className="h-8 w-8 bg-red-500 rounded"></div>
         </div>
         <div className="w-full h-18 ">
-          <h1 className="text-sm font-medium w-52 overflow-hidden text-ellipsis whitespace-nowrap">
+          <span className="text-sm font-medium w-52 overflow-hidden text-ellipsis whitespace-nowrap">
             Title asfsa fas f asf asf asf as fa sf
-          </h1>
+          </span>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ const MobileMenu = () => {
         </div>
         <hr />
         <div className="px-3 py-2">
-          <h1>Order Summary</h1>
+          <h4>Order Summary</h4>
           <div className="grid grid-cols-2 gap-x-5 ">
             <div className="col-span-1">
               <Prices Name="Subtotal" Price={300} />
