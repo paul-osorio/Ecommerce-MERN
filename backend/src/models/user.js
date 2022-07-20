@@ -41,58 +41,57 @@ const dateOfBirthObject = {
   },
 };
 
-const UserSchema = new mongoose.Schema({
-  nameFirst: {
-    type: String,
-    required: true,
+const UserSchema = new mongoose.Schema(
+  {
+    nameFirst: {
+      type: String,
+      required: true,
+    },
+    nameLast: {
+      type: String,
+      required: true,
+    },
+    nameMiddle: {
+      type: String,
+      required: false,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    source: {
+      type: String,
+      required: true,
+    },
+    addresses: [AddressSchema],
+    gender: {
+      type: String,
+      required: true,
+    },
+    profilePicture: {
+      type: String,
+      required: false,
+    },
+    phoneNumber: {
+      type: String,
+      required: false,
+    },
+    dateOfBirth: dateOfBirthObject,
+    role: {
+      type: String,
+      required: true,
+    },
+    hasShop: {
+      type: Boolean,
+      required: false,
+    },
   },
-  nameLast: {
-    type: String,
-    required: true,
-  },
-  nameMiddle: {
-    type: String,
-    required: false,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  source: {
-    type: String,
-    required: true,
-  },
-  addresses: [AddressSchema],
-  gender: {
-    type: String,
-    required: true,
-  },
-  profilePicture: {
-    type: String,
-    required: false,
-  },
-  phoneNumber: {
-    type: String,
-    required: false,
-  },
-  dateOfBirth: dateOfBirthObject,
-  role: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  { timestamps: true }
+);
 
 const User = mongoose.model("User", UserSchema);
 

@@ -39,7 +39,7 @@ const NotificationCard = ({ Title, Content }) => {
           <div>
             <span className="text-xs text-gray-500 ">07/03/2022 14:36</span>
 
-            <h1 className=" line-clamp-1">{Title}</h1>
+            <span className=" line-clamp-1">{Title}</span>
             <p className="text-sm text-gray-500 line-clamp-2">{Content}</p>
           </div>
         </div>

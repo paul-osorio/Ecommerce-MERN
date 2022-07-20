@@ -3,7 +3,17 @@ import { useMyShop } from "../../../context/MyShopContext";
 import { NextButton } from "./FirstForm";
 
 const SecondForm = () => {
-  const { setStep, profile, setProfile, banner, setBanner } = useMyShop();
+  const {
+    setStep,
+    profile,
+    setProfile,
+    setProfileName,
+    setBannerName,
+    bannerName,
+    profileName,
+    banner,
+    setBanner,
+  } = useMyShop();
   const profileRef = useRef();
   const bannerRef = useRef();
   const [error, setError] = useState("");
@@ -22,13 +32,15 @@ const SecondForm = () => {
   };
   const profileChange = (event) => {
     if (event.target.files && event.target.files[0]) {
-      setProfile(URL.createObjectURL(event.target.files[0]));
+      setProfile(event.target.files[0]);
+      setProfileName(URL.createObjectURL(event.target.files[0]));
       setError("");
     }
   };
   const bannerChange = (event) => {
     if (event.target.files && event.target.files[0]) {
-      setBanner(URL.createObjectURL(event.target.files[0]));
+      setBanner(event.target.files[0]);
+      setBannerName(URL.createObjectURL(event.target.files[0]));
     }
   };
   return (
@@ -55,13 +67,13 @@ const SecondForm = () => {
 
       <div className="w-full relative">
         <Banner
-          Banner={banner}
+          Banner={bannerName}
           onClick={() => {
             bannerRef.current.click();
           }}
         />
         <Profile
-          Picture={profile}
+          Picture={profileName}
           onClick={() => {
             profileRef.current.click();
           }}

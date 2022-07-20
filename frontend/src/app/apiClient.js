@@ -7,6 +7,7 @@ axiosClient.defaults.baseURL = "http://192.168.100.4:5000/api";
 
 axiosClient.defaults.headers = {
   "Content-Type": "application/json",
+  "Content-Type": "multipart/form-data",
   Accept: "application/json",
 };
 axiosClient.defaults.timeout = 2000;

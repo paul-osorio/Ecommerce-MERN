@@ -46,13 +46,13 @@ const FirstForm = () => {
   );
 };
 
-export const NextButton = ({ onClick, isSubmit }) => {
+export const NextButton = ({ onClick, isSubmit, submitting }) => {
   return (
     <button
       onClick={onClick}
       className="bg-indigo-500 px-5 py-1 rounded-full hover:bg-indigo-600 text-white mt-2"
     >
-      {isSubmit ? "Submit" : "Next"}
+      {submitting ? "Submitting..." : isSubmit ? "Submit" : "Next"}
     </button>
   );
 };

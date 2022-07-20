@@ -24,13 +24,12 @@ const LastForm = ({ onNext }) => {
             setDescription(e.target.value);
             setError("");
           }}
+          value={description}
           maxLength="1000"
           placeholder="Type your store description"
           className="resize-none border rounded-lg w-full p-3 outline-none focus:ring-2 focus:ring-orange-500"
           rows="3"
-        >
-          {description}
-        </textarea>
+        ></textarea>
         {error && (
           <div className="text-red-500 text-xs">
             <i className="far fa-exclamation-circle mx-1"></i>
