@@ -7,6 +7,7 @@ import { EditorProvider } from "../../../../context/EditorContext";
 import { Form, Formik } from "formik";
 import { useContext, useRef, useState } from "react";
 import { AddProductContext } from "../../../../context/AddProductContext";
+import { createProduct } from "../../../../app/lib/product";
 
 const ProductDescription = () => {
   const { formData, setFormData, setStep } = useContext(AddProductContext);
@@ -20,10 +21,31 @@ const ProductDescription = () => {
     setFormData(data);
     setStep(2);
   };
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     const fromRaw = convertFromRaw(values.description);
+    //filter images from formdata?.images
+
     if (fromRaw.getPlainText().length > 0) {
-      console.log("jo");
+      const fd = new FormData();
+      fd.append("name", formData?.productName);
+      fd.append("category", JSON.stringify(formData?.productCategory));
+      fd.append("price", formData?.price);
+      fd.append("stock", formData?.stock);
+      fd.append("shipping", JSON.stringify(formData?.shipping));
+      fd.append("description", draftToHtml(values.description));
+      const img = formData?.images.length;
+      for (let i = 0; i < img; i++) {
+        fd.append("product_images", formData?.images[i].file);
+      }
+
+      try {
+        await createProduct(fd);
+        alert("Product created");
+        window.location.reload();
+      } catch (err) {
+        console.log(err);
+      }
+      console.log(...fd);
     } else {
       setError("Please write your product description");
     }

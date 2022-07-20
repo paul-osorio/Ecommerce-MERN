@@ -1,17 +1,16 @@
 import axios from "axios";
 
-const axiosClient = axios.create();
-
-axiosClient.defaults.baseURL = "http://192.168.100.4:5000/api";
-// axiosClient.defaults.baseURL = "http://localhost:5000/api";
-
-axiosClient.defaults.headers = {
-  "Content-Type": "application/json",
-  "Content-Type": "multipart/form-data",
-  Accept: "application/json",
-};
-axiosClient.defaults.timeout = 2000;
-
-axiosClient.defaults.withCredentials = true;
+const axiosClient = axios.create({
+  baseURL: "http://192.168.100.4:5000/api",
+  headers: {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    "Access-Control-Allow-Headers":
+      "Origin, X-Requested-With, Content-Type, Accept",
+  },
+  timeout: 10000,
+  withCredentials: true,
+});
 
 export default axiosClient;

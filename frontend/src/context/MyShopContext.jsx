@@ -20,20 +20,15 @@ export const MyShopProvider = ({ children }) => {
   const onSubmit = async () => {
     setIsSubmitting(true);
     if (description) {
-      const data = {
-        shop_name: shopName,
-        shop_banner: banner,
-        shop_profile: profile,
-        shop_description: description,
-      };
-      try {
-        await createShop(data);
-        setIsSubmitting(false);
-        window.location.reload();
-      } catch (error) {
-        alert(error);
-        setIsSubmitting(false);
-      }
+      const formData = new FormData();
+      formData.append("shop_name", shopName);
+      formData.append("shop_description", description);
+      formData.append("shop_banner", banner);
+      formData.append("shop_profile", profile);
+
+      await createShop(formData);
+      window.location.reload();
+      setIsSubmitting(false);
     } else {
       setError("Shop description is required");
       setIsSubmitting(false);

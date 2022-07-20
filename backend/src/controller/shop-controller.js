@@ -1,59 +1,28 @@
 const ShopModel = require("../models/shop");
 const UserModel = require("../models/user");
-const { v4: uuidv4 } = require("uuid");
-const path = require("path");
 
 const createShop = async (req, res) => {
-  const newPathBanner = __dirname + "/../public/shop/banner";
-  const newPathProfile = __dirname + "/../public/shop/profile";
+  const bannerFilename = req.files.shop_banner[0].filename;
+  const profileFilename = req.files.shop_profile[0].filename;
 
   try {
-    const shopProfile = req.files.shop_profile;
-    const shopBanner = req.files.shop_banner;
-    const profileExtenstion = path.extname(shopProfile.name);
-    const bannerExtenstion = path.extname(shopBanner.name);
-
-    const shopProfileName = "profile_" + uuidv4() + profileExtenstion;
-    const shopBannerName = "banner_" + uuidv4() + bannerExtenstion;
-
-    const data = {
-      user_id: req.user._id,
+    await ShopModel.create({
       shop_name: req.body.shop_name,
-      shop_banner: shopBannerName,
-      shop_profile: shopProfileName,
+      shop_banner: bannerFilename,
+      shop_profile: profileFilename,
       shop_description: req.body.shop_description,
-    };
-
-    shopProfile.mv(newPathProfile + "/" + shopProfileName, (err) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).send(err);
-      }
+      user_id: req.user._id,
     });
 
-    shopBanner.mv(newPathBanner + "/" + shopBannerName, (err) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).send(err);
-      }
-    });
-
-    const shop = await ShopModel.create(data);
-    await UserModel.findOneAndUpdate(
-      { _id: req.user._id },
-      {
-        hasShop: true,
-      }
-    );
+    await UserModel.findOneAndUpdate({ _id: req.user._id }, { hasShop: true });
 
     return res.json({
       status: true,
-      shop: shop,
     });
   } catch (error) {
     return res.json({
       status: false,
-      error: error,
+      message: error.message,
     });
   }
 };

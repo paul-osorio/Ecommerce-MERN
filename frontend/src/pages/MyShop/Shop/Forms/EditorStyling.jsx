@@ -81,6 +81,7 @@ const EditorButton = ({ onMouseDown, Name }) => {
         onMouseDown();
         setIsActive(!isActive);
       }}
+      type="button"
       className="h-8 w-8 transition  active:bg-indigo-200 shadow hover:bg-indigo-100 bg-white text-gray-800 rounded"
     >
       {Name}
