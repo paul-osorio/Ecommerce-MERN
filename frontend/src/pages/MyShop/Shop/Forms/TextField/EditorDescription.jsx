@@ -29,9 +29,9 @@ const EditorDescription = ({ setFieldValue, setError }) => {
 
   return (
     <div>
-      <div className="border mt-2 rounded-xl">
+      <div className="border mt-2 rounded-xl o">
         <EditorStyling onChange={onChange} editorState={editorState} />
-        <div onClick={focusEditor} className="p-3">
+        <div onClick={focusEditor} className="p-3 max-h-[450px] overflow-auto">
           <Editor
             handleBeforeInput={(val) => {
               const textLength = editorState

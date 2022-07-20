@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react";
 export const AddProductContext = createContext();
 
 export const AddProductProvider = ({ children }) => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const [formData, setFormData] = useState({});
 
   const values = {

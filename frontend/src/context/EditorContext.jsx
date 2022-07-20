@@ -16,7 +16,6 @@ export const EditorProvider = ({ children }) => {
     EditorState.createWithContent(content)
   );
   const [alignmentType, setAlignmentType] = useState("");
-  console.log(formData);
 
   const values = {
     editorState,
