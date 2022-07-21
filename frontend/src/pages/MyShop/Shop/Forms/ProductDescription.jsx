@@ -27,7 +27,7 @@ const ProductDescription = () => {
 
     if (fromRaw.getPlainText().length > 0) {
       const fd = new FormData();
-      fd.append("name", formData?.productName);
+      fd.append("productName", formData?.productName);
       fd.append("category", JSON.stringify(formData?.productCategory));
       fd.append("price", formData?.price);
       fd.append("stock", formData?.stock);

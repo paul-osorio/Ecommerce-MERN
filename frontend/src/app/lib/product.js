@@ -7,3 +7,11 @@ export function getProductCategories() {
 export function createProduct(data) {
   return axiosClient.post(`/product`, data);
 }
+
+export function getAllProduct() {
+  return axiosClient.get(`/product`);
+}
+
+export function getOneProduct(id) {
+  return axiosClient.get(`/product/${id}`);
+}

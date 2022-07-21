@@ -28,7 +28,7 @@ const createProduct = async (req, res) => {
 
   const data = {
     user_id: req.user._id,
-    productName: req.body.name,
+    productName: req.body.productName,
     price: req.body.price,
     stock: req.body.stock,
     description: req.body.description,
@@ -57,7 +57,37 @@ const createProduct = async (req, res) => {
   }
 };
 
+const getAllProducts = async (req, res) => {
+  //find all products based on user_id
+  try {
+    const products = await ProductModel.find({ user_id: req.user._id });
+    return res.json({
+      products: products,
+    });
+  } catch (error) {
+    return res.json({
+      error: error,
+    });
+  }
+};
+
+const getOneProduct = async (req, res) => {
+  //find one product based on product_id
+  try {
+    const product = await ProductModel.findOne({ _id: req.params.id });
+    return res.json({
+      product: product,
+    });
+  } catch (error) {
+    return res.json({
+      error: error,
+    });
+  }
+};
+
 module.exports = {
   productCategories,
   createProduct,
+  getAllProducts,
+  getOneProduct,
 };

@@ -3,7 +3,7 @@ import Backdrop from "./Backdrop";
 
 const SuccessUpdate = ({ handleClose }) => {
   return (
-    <Backdrop onClick={handleClose}>
+    <Backdrop onClick={handleClose} backdrop="bg-black/5">
       <div
         className="bg-white shadow shadow-gray-300 py-3 px-5 rounded-xl relative"
         onClick={(e) => e.stopPropagation()}
@@ -15,7 +15,7 @@ const SuccessUpdate = ({ handleClose }) => {
             alt=""
           />
         </div>
-        <span className="block text-center block text-gray-700 font-medium mt-2">
+        <span className="block text-center text-gray-700 font-medium mt-2">
           SUCCESS
         </span>
         <p className="block text-sm text-center text-gray-500">

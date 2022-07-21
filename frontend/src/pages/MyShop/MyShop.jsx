@@ -5,7 +5,6 @@ import MainShop from "./Shop";
 
 const MyShop = () => {
   const data = useGetUserDetails().user;
-  console.log(data?.hasShop);
   return (
     <MyShopProvider>
       <div className="p-5">
