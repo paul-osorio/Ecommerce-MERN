@@ -6,9 +6,10 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { getAllProductPage, deleteProduct } from "../../../app/lib/product";
 import DeleteModal from "../../../components/Modal/DeleteModal";
 import { useState } from "react";
+import { ControlButton } from "./components/ControlButton";
 
 const fetchProducts = async (page) => {
-  const res = await getAllProductPage(2, page);
+  const res = await getAllProductPage(10, page);
   return res?.data;
 };
 
@@ -18,17 +19,15 @@ const Products = () => {
   const {
     isLoading,
     isError,
-    error,
     data: res,
     refetch: refetchProducts,
-    isPreviousData,
   } = useQuery(["products", page], () => fetchProducts(page), {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
   });
   console.log(res);
 
-  const { data, mutate: productDelete } = useMutation(deleteProduct, {
+  const { mutate: productDelete } = useMutation(deleteProduct, {
     onSettled: async () => {
       await refetchProducts();
     },
@@ -56,23 +55,17 @@ const Products = () => {
                   <ProductCard key={product._id} product={product} />
                 ))}
               </div>
-              <div>
-                <button
-                  onClick={() =>
-                    setPage((prevState) => Math.max(prevState - 1, 0))
-                  }
-                >
-                  Previous Page
-                </button>
-                <button
-                  onClick={() => {
-                    if (page < res.info.totalPages) {
-                      setPage(page + 1);
-                    }
-                  }}
-                >
-                  Next page
-                </button>
+              <div className="flex justify-between">
+                <span></span>
+                <div className="flex justify-end space-x-2 mt-2">
+                  <ControlButton type={1} setPage={setPage} page={page} />
+                  <ControlButton
+                    type={2}
+                    setPage={setPage}
+                    page={page}
+                    res={res}
+                  />
+                </div>
               </div>
             </>
           )

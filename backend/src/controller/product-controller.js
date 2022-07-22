@@ -119,6 +119,9 @@ const productPagination = async (req, res) => {
       info: {
         results: itemsPerPage,
         page: pageNum,
+        totalPages: Math.ceil(
+          (await ProductModel.countDocuments({})) / itemsPerPage
+        ),
       },
     });
   } catch (error) {

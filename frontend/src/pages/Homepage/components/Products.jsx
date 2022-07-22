@@ -12,25 +12,19 @@ const fetchProducts = async ({ pageParam = 1 }) => {
 const Products = () => {
   const { ref, inView } = useInView();
 
-  const {
-    status,
-    data,
-    error,
-    isFetching,
-    isFetchingNextPage,
-    isFetchingPreviousPage,
-    fetchNextPage,
-    fetchPreviousPage,
-    hasNextPage,
-    hasPreviousPage,
-  } = useInfiniteQuery(["products"], fetchProducts, {
-    getNextPageParam: (lastPage, pages) => {
-      return lastPage.info.page + 1;
-    },
-    getPreviousPageParam: (lastPage, pages) => {
-      return lastPage.info.page - 1;
-    },
-  });
+  const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage } =
+    useInfiniteQuery(["products"], fetchProducts, {
+      refetchOnWindowFocus: false,
+      getNextPageParam: (lastPage, pages) => {
+        if (lastPage.info.page === lastPage.info.totalPages) return undefined;
+        return lastPage.info.page + 1;
+      },
+      getPreviousPageParam: (lastPage, pages) => {
+        return lastPage.info.page - 1;
+      },
+    });
+
+  console.log(hasNextPage);
 
   useEffect(() => {
     if (inView) {
@@ -39,7 +33,7 @@ const Products = () => {
   }, [inView]);
 
   return (
-    <div>
+    <div className="mb-5">
       {data?.pages.map((page, i) => (
         <div
           key={i}
@@ -50,17 +44,31 @@ const Products = () => {
           ))}
         </div>
       ))}
-      <div>
+      <div className="flex justify-center">
         <button
           ref={ref}
           onClick={() => fetchNextPage()}
           disabled={!hasNextPage || isFetchingNextPage}
+          className={
+            "bg-white px-16 rounded-full py-2 shadow border border-purple-500 " +
+            (hasNextPage
+              ? "text-purple-600 hover:bg-purple-500 hover:text-white "
+              : "bg-gray-200 text-gray-800 border-none")
+          }
         >
-          {isFetchingNextPage
-            ? "Loading more..."
-            : hasNextPage
-            ? "Load Newer"
-            : "Nothing more to load"}
+          {isFetchingNextPage ? (
+            <span>
+              <i className="fas fa-spinner-third mr-2 animate-spin"></i>Loading
+              more...
+            </span>
+          ) : hasNextPage ? (
+            "See more"
+          ) : (
+            <span>
+              Oops! looks like there is no more products{" "}
+              <i className="fas fa-frown ml-2"></i>
+            </span>
+          )}
         </button>
       </div>
       <div>

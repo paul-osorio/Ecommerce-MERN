@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const geturi = import.meta.env.VITE_APP_BASE_URL;
-  const image = geturi + "product_images/" + product?.image;
+  const image = geturi + "product_images/" + product?.images[0];
   const description = convertFromHTML(product?.description);
   const state = ContentState.createFromBlockArray(
     description.contentBlocks,
