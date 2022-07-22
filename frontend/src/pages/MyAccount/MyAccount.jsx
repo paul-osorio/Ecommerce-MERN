@@ -1,6 +1,4 @@
-import ReactSelect from "react-select";
 import MyAccountForm from "../../components/Forms/MyAccountForm/MyAccountForm";
-import useGetUserDetails from "../../hooks/useGetUserDetails";
 
 const MyAccount = () => {
   return (

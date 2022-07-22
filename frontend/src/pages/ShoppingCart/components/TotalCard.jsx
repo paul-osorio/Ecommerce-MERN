@@ -1,11 +1,16 @@
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useEffect } from "react";
+import { getUserDetails } from "../../../app/lib/user";
 import useArrangeAddress from "../../../hooks/useArrangaAddress";
-import useGetUserDetails from "../../../hooks/useGetUserDetails";
 
 const TotalCard = () => {
-  const data = useGetUserDetails().user?.addresses[0];
+  const { data } = useQuery(["user"], async () => {
+    const user = await getUserDetails();
+    return user.data.addresses[0];
+  });
   const address = useArrangeAddress(data);
+
   return (
     <Container>
       <div className="px-5 py-5 flex space-x-5">

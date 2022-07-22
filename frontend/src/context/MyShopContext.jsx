@@ -1,17 +1,14 @@
 import { createContext, useState, useContext } from "react";
-import useGetUserDetails from "../hooks/useGetUserDetails";
 import { createShop } from "../app/lib/shop";
 
 export const MyShopContext = createContext();
 
 export const MyShopProvider = ({ children }) => {
-  const data = useGetUserDetails().user;
-  const prof = data?.profilePicture;
   const [step, setStep] = useState(1);
   const [shopName, setShopName] = useState("");
   const [banner, setBanner] = useState(null);
   const [bannerName, setBannerName] = useState(null);
-  const [profileName, setProfileName] = useState(prof);
+  const [profileName, setProfileName] = useState(null);
   const [profile, setProfile] = useState(null);
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");

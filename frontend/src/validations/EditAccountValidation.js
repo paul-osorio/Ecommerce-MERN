@@ -1,10 +1,13 @@
+import { useQuery } from "@tanstack/react-query";
 import * as Yup from "yup";
 import { checkUserExists } from "../app/lib/auth";
-import useGetUserDetails from "../hooks/useGetUserDetails";
+import { getUserDetails } from "../app/lib/user";
 
 const EditSchema = () => {
-  const data = useGetUserDetails().user;
-  const email = data?.email;
+  const { data: email } = useQuery(["user"], async () => {
+    const user = await getUserDetails();
+    return user.data.email;
+  });
 
   const EditAccountSchema = Yup.object().shape({
     nameFirst: Yup.string().trim().required("Firstname is required"),

@@ -1,15 +1,20 @@
 import { Link, NavLink } from "react-router-dom";
-import useGetUserDetails from "../../../../../hooks/useGetUserDetails";
 import MenuLink from "../Links/MobilMenuLink";
 import { Links } from "./AccountCard";
 import { motion } from "framer-motion";
 import { logoutUser } from "../../../../../app/lib/auth";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getUserDetails } from "../../../../../app/lib/user";
 
 const MobileMenuCard = ({ onClose }) => {
-  const { user } = useGetUserDetails();
-  const profilePicture = user?.profilePicture;
-  const fullname = user?.nameFirst + " " + user?.nameLast;
+  const { data } = useQuery(["userprofile"], async () => {
+    const user = await getUserDetails();
+    return {
+      fullname: `${user.data.nameFirst} ${user.data.nameLast}`,
+      profilePicture: user.data.profilePicture,
+    };
+  });
   const navigate = useNavigate();
 
   const SignOut = () => {
@@ -34,10 +39,10 @@ const MobileMenuCard = ({ onClose }) => {
       <div className="py-2 mx-5 bg-gray-100 rounded-xl">
         <Link to="/myaccount" onClick={onClose} className="group">
           <div className="flex items-center justify-center pt-2">
-            <Profile ProfilePicture={profilePicture} />
+            <Profile ProfilePicture={data.profilePicture} />
           </div>
           <span className="text-center group-active:underline block font-medium leading-3 mt-2">
-            {fullname}
+            {data.fullname}
           </span>
           <span className="block text-center group-active:underline text-xs text-gray-500">
             My Account

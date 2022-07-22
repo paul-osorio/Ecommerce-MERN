@@ -1,9 +1,13 @@
+import { useQuery } from "@tanstack/react-query";
+import { getUserDetails } from "../../../../app/lib/user";
 import useArrangeAddress from "../../../../hooks/useArrangaAddress";
-import useGetUserDetails from "../../../../hooks/useGetUserDetails";
 import { Prices } from "../TotalCard";
 
 const MobileMenu = () => {
-  const data = useGetUserDetails().user?.addresses[0];
+  const { data } = useQuery(["user"], async () => {
+    const user = await getUserDetails();
+    return user.data.addresses[0];
+  });
   const address = useArrangeAddress(data);
   return (
     <div className="laptop:hidden sticky bottom-0 px-3">

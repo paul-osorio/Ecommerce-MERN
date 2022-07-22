@@ -1,18 +1,39 @@
-import useGetUserDetails from "../../../hooks/useGetUserDetails";
 import { Formik, Form, Field } from "formik";
 import GridTextField from "./GridTextField";
 import SelectDropdown from "../../Dropdown/SelectDropdown";
 import dates from "../../../json/dates.json";
 import EditSchema from "../../../validations/EditAccountValidation";
-import useOnUpdateProfile from "../../../hooks/useOnUpdateProfile";
 import SuccessUpdate from "../../Modal/SuccessUpdate";
 import { AnimatePresence } from "framer-motion";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getUserDetails, updateUser } from "../../../app/lib/user";
+import { useEffect, useState } from "react";
 
 const MyAccountForm = () => {
-  const { onSubmit, loading, initialValues, success, setSuccess } =
-    useOnUpdateProfile();
-  const data = useGetUserDetails().user;
-  const profile = data?.profilePicture;
+  const { isLoading, data, error } = useQuery(["user"], getUserDetails);
+  const [success, setSuccess] = useState(false);
+  const { isLoading: isUpdating, mutate: userUpdate } = useMutation(
+    updateUser,
+    {
+      onSuccess: () => {
+        setSuccess(true);
+      },
+    }
+  );
+  const user = data?.data;
+
+  const initialValues = {
+    nameFirst: user?.nameFirst || "",
+    nameLast: user?.nameLast || "",
+    email: user?.email || "",
+    phoneNumber: user?.phoneNumber || "",
+    gender: user?.gender || "",
+    month: user?.dateOfBirth.month || "",
+    day: parseInt(user?.dateOfBirth.day) || "",
+    year: parseInt(user?.dateOfBirth.year) || "",
+  };
+
+  const profile = user?.profilePicture;
   const editSchema = EditSchema();
   const handleClose = () => setSuccess(false);
 
@@ -21,6 +42,26 @@ const MyAccountForm = () => {
     { value: "Female", label: "Female" },
     { value: "Other", label: "Other" },
   ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSuccess(false);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [success]);
+
+  const onSubmit = async (values) => {
+    try {
+      userUpdate(values);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -86,7 +127,6 @@ const MyAccountForm = () => {
                     Gender
                   </label>
                   <Field
-                    // defaultValue={{value: data?.gender, }}
                     value={genderOptions.filter(
                       (option) => option.label === values.gender
                     )}
@@ -133,9 +173,9 @@ const MyAccountForm = () => {
                   <button
                     type="submit"
                     className="mt-5 bg-indigo-500 text-white px-5 py-2 rounded-full hover:bg-indigo-600"
-                    disabled={loading}
+                    disabled={isUpdating}
                   >
-                    {loading ? "Saving..." : "Save Changes"}
+                    {isUpdating ? "Saving..." : "Save Changes"}
                   </button>
                 </div>
               </div>

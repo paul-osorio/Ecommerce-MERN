@@ -1,5 +1,6 @@
 const CategoryModel = require("../models/categories");
 const ProductModel = require("../models/product");
+const fs = require("fs");
 
 const productCategories = async (req, res) => {
   try {
@@ -85,9 +86,84 @@ const getOneProduct = async (req, res) => {
   }
 };
 
+const deleteProduct = async (req, res) => {
+  //delete one product based on product_id
+  try {
+    const product = await ProductModel.findOneAndDelete({ _id: req.params.id });
+    const images = product.images;
+    for (let i = 0; i < images.length; i++) {
+      fs.unlinkSync(`./public/product_images/${images[i]}`);
+    }
+
+    return res.json({
+      product: images,
+    });
+  } catch (error) {
+    return res.json({
+      error: error,
+    });
+  }
+};
+
+const productPagination = async (req, res) => {
+  //pagination for products
+  const itemsPerPage = req.params.itemsPerPage;
+  const pageNum = parseInt(req.params.pageNum);
+
+  try {
+    const products = await ProductModel.find({})
+      .skip((pageNum - 1) * itemsPerPage)
+      .limit(itemsPerPage);
+    return res.json({
+      results: products,
+      info: {
+        results: itemsPerPage,
+        page: pageNum,
+      },
+    });
+  } catch (error) {
+    return res.json({
+      error: error,
+    });
+  }
+};
+
+const getAllProductPage = async (req, res) => {
+  //pagination for products
+  const itemsPerPage = req.params.itemsPerPage;
+  const pageNum = parseInt(req.params.pageNum);
+
+  try {
+    const products = await ProductModel.find({ user_id: req.user._id })
+      .skip((pageNum - 1) * itemsPerPage)
+      .limit(itemsPerPage);
+    return res.json({
+      results: products,
+      info: {
+        results: itemsPerPage,
+        page: pageNum,
+        totalPages: Math.ceil(
+          (await ProductModel.countDocuments({ user_id: req.user._id })) /
+            itemsPerPage
+        ),
+        totalResults: await ProductModel.countDocuments({
+          user_id: req.user._id,
+        }),
+      },
+    });
+  } catch (error) {
+    return res.json({
+      error: error,
+    });
+  }
+};
+
 module.exports = {
   productCategories,
   createProduct,
   getAllProducts,
   getOneProduct,
+  productPagination,
+  deleteProduct,
+  getAllProductPage,
 };

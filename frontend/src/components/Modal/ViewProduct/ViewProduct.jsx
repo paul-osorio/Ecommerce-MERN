@@ -6,11 +6,30 @@ import Carousel from "./components/Carousel";
 import thousandsSeperator from "../../../helper/thousandsSeperator";
 import { ContentState, EditorState, Editor, convertFromHTML } from "draft-js";
 import { ProductButton } from "../../../pages/MyShop/Shop/components/ProductCard";
+import { useQuery } from "@tanstack/react-query";
 
 const ViewProduct = ({ handleClose }) => {
-  const [product, setProduct] = useState({});
-  const [loading, setLoading] = useState(true);
   const [searchParams] = useSearchParams();
+  const productId = searchParams.get("id");
+  const [productParam] = useState(productId);
+
+  const {
+    isLoading,
+    isError,
+    data: product,
+    error,
+  } = useQuery(
+    ["product", productParam],
+    async () => {
+      const response = await getOneProduct(productParam);
+      return response.data.product;
+    },
+    {
+      enabled: productParam !== null,
+      retry: false,
+    }
+  );
+
   const des = convertFromHTML(product?.description || "");
 
   const state = ContentState.createFromBlockArray(
@@ -19,23 +38,20 @@ const ViewProduct = ({ handleClose }) => {
   );
   const editorState = EditorState.createWithContent(state);
 
-  const productId = searchParams.get("id");
-
-  const fetchOneProduct = async () => {
-    setLoading(true);
-    try {
-      const response = await getOneProduct(productId);
-      const data = response.data.product;
-      setProduct(data);
-    } catch (error) {
-      console.log(error);
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchOneProduct();
-  }, [productId]);
+  if (isLoading) {
+    return (
+      <Backdrop onClick={handleClose} backdrop="bg-black/40">
+        <div className="bg-white p-2">Loading...</div>
+      </Backdrop>
+    );
+  }
+  if (isError) {
+    return (
+      <Backdrop onClick={handleClose} backdrop="bg-black/40">
+        <div className="bg-white p-2">Error: {error.message}</div>
+      </Backdrop>
+    );
+  }
 
   return (
     <Backdrop onClick={handleClose} backdrop="bg-black/40">
@@ -49,7 +65,7 @@ const ViewProduct = ({ handleClose }) => {
               onClick={handleClose}
               className="bg-red-400 hover:bg-red-500 active:scale-95 text-white h-6 w-6 rounded"
             >
-              <i class="fas fa-times"></i>
+              <i className="fas fa-times"></i>
             </button>
           </div>
           <div className="flex tablet:flex-row mobile:flex-col tablet:items-start tablet:space-x-2">

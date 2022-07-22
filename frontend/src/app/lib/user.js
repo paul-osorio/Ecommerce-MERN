@@ -4,6 +4,6 @@ export function getUserDetails() {
   return axiosClient.get(`/user`);
 }
 
-export function updateUserById(data) {
+export function updateUser(data) {
   return axiosClient.patch(`/user`, data);
 }

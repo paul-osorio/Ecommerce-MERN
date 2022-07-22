@@ -1,7 +1,10 @@
-import useGetMyShop from "../../../hooks/useGetMyShop";
+import { useQuery } from "@tanstack/react-query";
+import { getShop } from "../../../app/lib/shop";
 
 const MyShop = () => {
-  const { shop, loading } = useGetMyShop();
+  const { isLoading: loading, data, error } = useQuery(["myShop"], getShop);
+  const shop = data?.data;
+
   const geturi = import.meta.env.VITE_APP_BASE_URL;
   const banner = geturi + "shop/" + shop?.shop_banner;
   const profile = geturi + "shop/" + shop?.shop_profile;
