@@ -34,6 +34,10 @@ const Products = () => {
 
   return (
     <div className="mb-5">
+      <div className="mb-2">
+        <p className="text-xl font-medium text-gray-700">Discover Products</p>
+        <hr />
+      </div>
       {data?.pages.map((page, i) => (
         <div
           key={i}

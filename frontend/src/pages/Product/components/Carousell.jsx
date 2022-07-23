@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import ImageHolder from "../../../Misc/ImageHolder";
-import placeholderImg from "../../../../assets/images/placeholder.png";
-import { paginateArray } from "../../../../helper/paginateArray";
+import { paginateArray } from "../../../helper/paginateArray";
+import placeholderImg from "../../../assets/images/placeholder.png";
+import ImageHolder from "../../../components/Misc/ImageHolder";
 
-const Carousel = ({ images }) => {
+const Carousell = ({ images }) => {
   const [currentImage, setCurrentImage] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const imagesPage = paginateArray(images, 5);
@@ -16,7 +16,7 @@ const Carousel = ({ images }) => {
   }, [images]);
 
   const nextPage = () => {
-    if (images?.length === 8) {
+    if (images?.length > 5) {
       if (currentPage === 0) {
         setCurrentPage(currentPage + 1);
       }
@@ -29,20 +29,21 @@ const Carousel = ({ images }) => {
   };
 
   return (
-    <div className="w-[22rem]">
-      <div className="h-[22rem] w-full bg-white mb-2 relative">
+    <div className="w-[28rem]">
+      <div className="h-[28rem] w-full bg-white mb-2 relative">
         <ImageHolder
           src={mainImage}
           placeholderImg={placeholderImg}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover border"
         />
       </div>
-      <div className="relative h-16">
+      <div className="relative h-[5.2rem]">
         <div className="flex space-x-2 w-full mt-2">
           {imagesPage[currentPage]?.map((image, i) => (
             <ChildCard
               src={image}
               key={i}
+              isActive={image === currentImage}
               onClick={() => {
                 setCurrentImage(image);
               }}
@@ -87,8 +88,9 @@ const ChildCard = ({ src, onClick, isActive }) => {
   return (
     <div
       role="button"
-      className="group bg-white border relative  w-16 h-16 flex items-center justify-center"
+      className="group bg-white border relative  w-[5.2rem] h-[5.2rem] flex items-center justify-center"
       onClick={onClick}
+      onMouseEnter={onClick}
     >
       <ImageHolder
         src={imgsrc}
@@ -104,4 +106,4 @@ const ChildCard = ({ src, onClick, isActive }) => {
   );
 };
 
-export default Carousel;
+export default Carousell;

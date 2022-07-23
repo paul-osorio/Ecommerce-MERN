@@ -21,6 +21,7 @@ import AllPurchase from "./pages/MyPurchase/All";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import Notifications from "./pages/Notifications/Notifications";
 import MyShop from "./pages/MyShop/MyShop";
+import Product from "./pages/Product";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <Route element={<PrivateRoute />}>
         <Route path="/" element={<HomeLayout />}>
           <Route path="" element={<Homepage />} />
+          <Route path=":product" element={<Product />} />
           <Route path="shops" element={<ShopsPage />} />
           <Route path="help" element={<HelpPage />} />
           <Route path="cart" element={<ShoppingCart />} />

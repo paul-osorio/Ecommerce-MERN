@@ -55,8 +55,10 @@ const Products = () => {
                   <ProductCard key={product._id} product={product} />
                 ))}
               </div>
-              <div className="flex justify-between">
-                <span></span>
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-gray-600">
+                  {page}/{res.info.totalPages}
+                </span>
                 <div className="flex justify-end space-x-2 mt-2">
                   <ControlButton type={1} setPage={setPage} page={page} />
                   <ControlButton

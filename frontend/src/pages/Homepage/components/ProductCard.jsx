@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import placeholderImg from "../../../assets/images/placeholder.png";
 import ImageHolder from "../../../components/Misc/ImageHolder";
 import { StarRating } from "../../../components/Misc/StarRating";
@@ -6,9 +7,21 @@ export const ProductCard = ({ product }) => {
   const getUri = import.meta.env.VITE_APP_BASE_URL;
   const image = product?.images[0];
   const imageUrl = `${getUri}/product_images/${image}`;
+  const navigate = useNavigate();
+
+  const viewProduct = () => {
+    navigate({
+      pathname: `/${encodeURIComponent(product.productName)}`,
+      search: `?id=${product._id}`,
+    });
+  };
 
   return (
-    <div className="bg-white w-full mb-3 cursor-pointer shadow-gray-300  shadow rounded hover:border-purple-500 border border-white">
+    <div
+      role="button"
+      onClick={viewProduct}
+      className="bg-white w-full mb-3 cursor-pointer shadow-gray-300  shadow rounded hover:border-purple-500 border border-white"
+    >
       <div className="w-full h-36">
         <ImageHolder
           src={imageUrl}
