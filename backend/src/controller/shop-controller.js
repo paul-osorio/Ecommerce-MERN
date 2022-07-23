@@ -45,7 +45,25 @@ const getShop = async (req, res) => {
   }
 };
 
+const getShopById = async (req, res) => {
+  try {
+    const shop = await ShopModel.findOne({ user_id: req.params.id });
+    return res.json({
+      shop_name: shop.shop_name,
+      shop_banner: shop.shop_banner,
+      shop_profile: shop.shop_profile,
+      shop_description: shop.shop_description,
+    });
+  } catch (error) {
+    return res.json({
+      status: false,
+      error: error,
+    });
+  }
+};
+
 module.exports = {
   createShop,
   getShop,
+  getShopById,
 };

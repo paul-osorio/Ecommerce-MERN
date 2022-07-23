@@ -6,3 +6,7 @@ export const createShop = (data) => {
 export const getShop = () => {
   return axiosClient.get("/shop");
 };
+
+export const getShopById = (id) => {
+  return axiosClient.get(`/shop/${id}`);
+};

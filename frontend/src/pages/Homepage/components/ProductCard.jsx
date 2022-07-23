@@ -33,7 +33,7 @@ export const ProductCard = ({ product }) => {
         <p className="line-clamp-2 text-sm">{product?.productName}</p>
         <div className="flex justify-between items-center">
           <span className="text-orange-600">₱ {product?.price}</span>
-          <StarRating rating={2.5} size="text-xs" />
+          <StarRating rating={2.5} className="text-xs text-amber-500" />
         </div>
       </div>
     </div>

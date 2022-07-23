@@ -33,7 +33,7 @@ const CountControl = ({ totalAvailable, value, setValue }) => {
         onClick={minus}
         className="h-8 rounded-l hover:bg-gray-100 w-8 border flex items-center justify-center"
       >
-        <i class="far fa-minus text-gray-600"></i>
+        <i className="far fa-minus text-gray-600"></i>
       </div>
       <input
         type="text"
@@ -53,7 +53,7 @@ const CountControl = ({ totalAvailable, value, setValue }) => {
         onClick={add}
         className="h-8 rounded-r w-8 hover:bg-gray-100 border flex items-center justify-center"
       >
-        <i class="far fa-plus text-gray-600"></i>
+        <i className="far fa-plus text-gray-600"></i>
       </div>
     </div>
   );

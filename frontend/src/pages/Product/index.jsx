@@ -14,12 +14,15 @@ const Product = () => {
     const response = await getOneProduct(id);
     return response.data.product;
   });
+  if (isLoading) {
+    return <div className="text-center">Loading...</div>;
+  }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col space-y-3 items-center mb-10">
       <MainCard data={data} />
-      <ShopCard />
-      <DescriptionCard />
+      <ShopCard shopID={data?.user_id} />
+      <DescriptionCard description={data?.description} />
       <RatingsCard />
     </div>
   );

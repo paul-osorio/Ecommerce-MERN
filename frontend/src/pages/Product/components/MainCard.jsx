@@ -4,10 +4,11 @@ import thousandsSeperator from "../../../helper/thousandsSeperator";
 import AddToCart from "./AddToCart";
 import Carousell from "./Carousell";
 import MainCardButtons from "./MainCardButtons";
+import Container from "./Container";
 
 const MainCard = ({ data }) => {
   return (
-    <div className="bg-white mobile:w-[90%] flex tablet:block justify-center laptop:w-3/4 p-3 shadow rounded-lg">
+    <Container>
       <div className="flex mobile:flex-col tablet:flex-row space-x-2">
         <div className="mobile:block laptop:hidden w-full">
           <Carousel images={data?.images} />
@@ -45,7 +46,7 @@ const MainCard = ({ data }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
