@@ -11,7 +11,12 @@ require("./config/passport/local");
 connectDB();
 
 const corsOptions = {
-  origin: ["http://localhost:3000", "http://192.168.100.4:3000"],
+  origin: [
+    "http://localhost:3000",
+    "http://192.168.100.4:3000",
+    "http://172.25.224.1:4173 q",
+    "http://192.168.100.4:4173",
+  ],
   credentials: true,
   optionsSuccessStatus: 200,
 };

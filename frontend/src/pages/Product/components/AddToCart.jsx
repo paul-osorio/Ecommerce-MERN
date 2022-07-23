@@ -1,24 +1,36 @@
 import { numberOnly } from "../../../helper/numberOnly";
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { useSearchParams } from "react-router-dom";
+import { addToCart } from "../../../app/lib/cart";
 
-const AddToCart = ({ totalAvailable = 125 }) => {
-  const [value, setValue] = useState(1);
+const AddToCart = ({ qty, value, setValue, data, refetchCart }) => {
+  const cart_qty = data?.quantity || 0;
+  console.log(cart_qty);
+  console.log(qty);
+
   return (
     <div className="flex items-center space-x-3">
       <CountControl
         value={value}
         setValue={setValue}
-        totalAvailable={totalAvailable}
+        qty={cart_qty}
+        totalqty={qty}
+        totalAvailable={qty}
       />
-      <span className="text-sm text-gray-500">{totalAvailable} available</span>
+      <span className="text-sm text-gray-500">{qty} available</span>
     </div>
   );
 };
 
-const CountControl = ({ totalAvailable, value, setValue }) => {
+const CountControl = ({ totalAvailable, value, setValue, qty, totalqty }) => {
   const add = () => {
     if (value < totalAvailable) {
-      setValue((prev) => prev + 1);
+      if (value >= totalqty - qty) {
+        alert("Out of stock");
+      } else {
+        setValue((prev) => prev + 1);
+      }
     }
   };
   const minus = () => {

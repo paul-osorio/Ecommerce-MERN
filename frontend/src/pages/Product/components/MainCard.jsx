@@ -5,8 +5,21 @@ import AddToCart from "./AddToCart";
 import Carousell from "./Carousell";
 import MainCardButtons from "./MainCardButtons";
 import Container from "./Container";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getOneCartItem } from "../../../app/lib/cart";
+import { useSearchParams } from "react-router-dom";
 
 const MainCard = ({ data }) => {
+  const [quantity, setQuantity] = useState(1);
+  const [searchParams] = useSearchParams();
+  const cart_id = searchParams.get("id");
+
+  const { data: cart, refetch: refetchCart } = useQuery(["cart"], async () => {
+    const res = await getOneCartItem({ item_id: cart_id });
+    return res?.data.data;
+  });
+
   return (
     <Container>
       <div className="flex mobile:flex-col tablet:flex-row space-x-2">
@@ -22,13 +35,13 @@ const MainCard = ({ data }) => {
             <Category category={data?.category} />
             <SoldRateCard rate={4.5} />
             <span className="block text-4xl mt-10 text-gray-700">
-              ₱ {thousandsSeperator(5000)}
+              ₱ {thousandsSeperator(data?.price)}
             </span>
           </div>
 
           <div className="mt-10">
             <div className="flex flex-col space-y-5 mt-5">
-              <div className="flex space-x-10 justfiy-between items-center">
+              <div className="flex space-x-10  items-center">
                 <span className="text-sm">Shipping</span>
                 <div className="text-sm flex space-x-5">
                   <span>Shipping Fee</span>
@@ -36,13 +49,19 @@ const MainCard = ({ data }) => {
                   <span>P50</span>
                 </div>
               </div>
-              <div className="flex space-x-10 justfiy-between items-center">
+              <div className="flex space-x-10 items-center">
                 <span className="text-sm">Quantity</span>
-                <AddToCart />
+                <AddToCart
+                  qty={data?.stock}
+                  value={quantity}
+                  setValue={setQuantity}
+                  data={cart}
+                  refetchCart={refetchCart}
+                />
               </div>
             </div>
 
-            <MainCardButtons />
+            <MainCardButtons data={cart} qty={data?.stock} value={quantity} />
           </div>
         </div>
       </div>
