@@ -1,5 +1,6 @@
 const CategoryModel = require("../models/categories");
 const ProductModel = require("../models/product");
+const RatingModel = require("../models/rating");
 const fs = require("fs");
 
 const productCategories = async (req, res) => {
@@ -76,11 +77,60 @@ const getOneProduct = async (req, res) => {
   //find one product based on product_id
   try {
     const product = await ProductModel.findOne({ _id: req.params.id });
-    return res.json({
+    if (!product) {
+      return res.status(400).json({
+        error: "Product not found",
+      });
+    }
+    //find all product on rating
+    const ratings = await RatingModel.find({ product_id: req.params.id });
+
+    let totalRating = 0;
+    for (let i = 0; i < ratings.length; i++) {
+      totalRating += ratings[i].rating;
+    }
+    const averageRating = totalRating / ratings.length;
+    const roundedRating = Math.round(averageRating * 10) / 10;
+
+    //get 5 star ratings from ratings
+    const fiveStarRatings = ratings.filter((rating) => rating.rating >= 5);
+    const fiveStarRatingCount = fiveStarRatings.length;
+    //get 4 star ratings from ratings
+    const fourStarRatings = ratings.filter(
+      (rating) => rating.rating >= 4 && rating.rating < 5
+    );
+    const fourStarRatingCount = fourStarRatings.length;
+    //get 3 star ratings from ratings
+    const threeStarRatings = ratings.filter(
+      (rating) => rating.rating >= 3 && rating.rating < 4
+    );
+    const threeStarRatingCount = threeStarRatings.length;
+    //get 2 star ratings from ratings
+    const twoStarRatings = ratings.filter(
+      (rating) => rating.rating >= 2 && rating.rating < 3
+    );
+    const twoStarRatingCount = twoStarRatings.length;
+    //get 1 star ratings from ratings
+
+    const oneStarRatings = ratings.filter(
+      (rating) => rating.rating >= 1 && rating.rating < 2
+    );
+    const oneStarRatingCount = oneStarRatings.length;
+
+    return res.status(200).json({
       product: product,
+      stars: roundedRating || 0,
+      rating: {
+        total: ratings.length,
+        fiveStar: fiveStarRatingCount,
+        fourStar: fourStarRatingCount,
+        threeStar: threeStarRatingCount,
+        twoStar: twoStarRatingCount,
+        oneStar: oneStarRatingCount,
+      },
     });
   } catch (error) {
-    return res.json({
+    return res.status(401).json({
       error: error,
     });
   }

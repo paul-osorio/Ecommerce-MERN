@@ -4,7 +4,7 @@ import TotalRating from "./Ratings/TotalRating";
 import { useState } from "react";
 import RatingTab from "./Ratings/RatingTab";
 import ReviewCard from "./Ratings/ReviewCard";
-const RatingsCard = () => {
+const RatingsCard = ({ stars, rate }) => {
   const [ratingType, setRatingType] = useState(0);
 
   return (
@@ -12,8 +12,8 @@ const RatingsCard = () => {
       <span className="block mb-2">Product Rating</span>
       <hr />
       <div className="flex  items-center justify-around my-3">
-        <TotalRating />
-        <IndividualRatingStat />
+        <TotalRating stars={stars} rating={rate?.total} />
+        <IndividualRatingStat rating={rate} />
       </div>
       <hr />
       <RatingTab type={ratingType} setType={setRatingType} />

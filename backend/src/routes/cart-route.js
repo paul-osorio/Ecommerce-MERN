@@ -1,8 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const { addToCart, getOneCartItem } = require("../controller/cart-controller");
+const isAuthenticated = require("../middleware/authentication");
 
-router.get("", addToCart);
+const {
+  addToCart,
+  getOneCartItem,
+  getMyCart,
+} = require("../controller/cart-controller");
+
+router.get("", isAuthenticated, addToCart);
 router.get("/details", getOneCartItem);
+router.get("/items", isAuthenticated, getMyCart);
 
 module.exports = router;

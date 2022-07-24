@@ -9,8 +9,9 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getOneCartItem } from "../../../app/lib/cart";
 import { useSearchParams } from "react-router-dom";
+import { SoldRateCard } from "./Main/SoldRateCart";
 
-const MainCard = ({ data }) => {
+const MainCard = ({ data, stars, rating }) => {
   const [quantity, setQuantity] = useState(1);
   const [searchParams] = useSearchParams();
   const cart_id = searchParams.get("id");
@@ -33,7 +34,7 @@ const MainCard = ({ data }) => {
           <div>
             <span className="text-2xl block">{data?.productName}</span>
             <Category category={data?.category} />
-            <SoldRateCard rate={4.5} />
+            <SoldRateCard stars={stars} rating={rating} />
             <span className="block text-4xl mt-10 text-gray-700">
               ₱ {thousandsSeperator(data?.price)}
             </span>
@@ -66,27 +67,6 @@ const MainCard = ({ data }) => {
         </div>
       </div>
     </Container>
-  );
-};
-
-const SoldRateCard = ({ rate }) => {
-  return (
-    <div className="flex items-center space-x-3 mt-2">
-      <div className="flex space-x-2 items-center ">
-        <span className="text-orange-500 border-b border-orange-500">
-          {rate}
-        </span>
-        <StarRating rating={rate} className="text-orange-500" />
-      </div>
-      <div className="h-[1px] w-2 bg-gray-400" />
-      <span>
-        {4}K <span className="text-gray-500">Ratings</span>
-      </span>
-      <div className="h-[1px] w-2 bg-gray-400" />
-      <span>
-        {400} <span className="text-gray-500">Sold</span>
-      </span>
-    </div>
   );
 };
 

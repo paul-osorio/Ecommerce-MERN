@@ -4,10 +4,8 @@ import { useMutation } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import { addToCart } from "../../../app/lib/cart";
 
-const AddToCart = ({ qty, value, setValue, data, refetchCart }) => {
+const AddToCart = ({ qty, value, setValue, data }) => {
   const cart_qty = data?.quantity || 0;
-  console.log(cart_qty);
-  console.log(qty);
 
   return (
     <div className="flex items-center space-x-3">
@@ -24,10 +22,10 @@ const AddToCart = ({ qty, value, setValue, data, refetchCart }) => {
 };
 
 const CountControl = ({ totalAvailable, value, setValue, qty, totalqty }) => {
+  const [error, setError] = useState(false);
   const add = () => {
     if (value < totalAvailable) {
       if (value >= totalqty - qty) {
-        alert("Out of stock");
       } else {
         setValue((prev) => prev + 1);
       }

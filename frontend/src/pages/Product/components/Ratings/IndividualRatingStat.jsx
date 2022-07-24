@@ -1,11 +1,11 @@
 import { StarRating } from "../../../../components/Misc/StarRating";
 
-const IndividualRatingStat = () => {
-  const star5 = 200;
-  const star4 = 142;
-  const star3 = 20;
-  const star2 = 5;
-  const star1 = 1;
+const IndividualRatingStat = ({ rating }) => {
+  const star5 = rating?.fiveStar;
+  const star4 = rating?.fourStar;
+  const star3 = rating?.threeStar;
+  const star2 = rating?.twoStar;
+  const star1 = rating?.oneStar;
 
   const total = star5 + star4 + star3 + star2 + star1;
 

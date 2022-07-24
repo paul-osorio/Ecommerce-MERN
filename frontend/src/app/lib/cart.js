@@ -11,3 +11,7 @@ export function getOneCartItem(data) {
     params: data,
   });
 }
+
+export function getMyCart() {
+  return axiosClient.get("/cart/items");
+}
